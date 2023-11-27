@@ -1,8 +1,12 @@
 # Neural Network in All Langs <!-- omit in toc -->
 
 - [1. Training](#1-training)
+  - [1.1. Logical Functions](#11-logical-functions)
+  - [1.2. Hand Written Digits](#12-hand-written-digits)
 - [2. Learning](#2-learning)
 - [3. Implementation Goals](#3-implementation-goals)
+  - [3.1. Simple Random Number Generator](#31-simple-random-number-generator)
+  - [3.2. License](#32-license)
 - [4. Reference Implementation](#4-reference-implementation)
   - [4.1. Inputs and Randomized Starting Weights](#41-inputs-and-randomized-starting-weights)
   - [4.2. Forward Propagation](#42-forward-propagation)
@@ -28,12 +32,16 @@ background.
 
 ## 1. Training
 
-For training we will use two datasets. The first is simple and will be these
-logical functions: xor, xnor, or, nor, and, and nand. This truth table
-represents the values that the network will learn:
+For training we will use two datasets.
+
+### 1.1. Logical Functions
+
+The first is simple and will be these logical functions: xor, xnor, or, nor,
+and, and nand. This truth table represents the values that the network will
+learn, given two inputs; $i_1$ and $i_2$:
 
 $$\begin{array}{rcl}
-i1 & i2 & xor & xnor & or & nor & and & nand \\
+i_1 & i_2 & xor & xnor & or & nor & and & nand \\
 0  & 0  & 0 & 1  &  0 & 1 & 0 & 1 \\
 0  & 1  & 1 & 0  &  1 & 0 & 0 & 1 \\
 1  & 0  & 1 & 0  &  1 & 0 & 0 & 1 \\
@@ -49,13 +57,12 @@ neurons. Such a network consists of a total of 24 weights:
 - 12 output weights (2 hidden * 6 outputs)
 - 6 output biases (one for each output neuron)
 
+### 1.2. Hand Written Digits
+
 The second dataset consists of thousands of hand written digits. This is
 actually also a "toy" dataset but training a network to recognize all digits
-correctly is still a bit of a challenge. You can download the dataset using:
-
-```bash
-wget http://archive.ics.uci.edu/ml/machine-learning-databases/semeion/semeion.data
-```
+correctly is still a bit of a challenge. This dataset was originally downloaded
+from <https://archive.ics.uci.edu/dataset/178/semeion+handwritten+digit>.
 
 Each line consists of 256 inputs (16x16 pixels) corresponding to one
 hand written digit. At the end of the line are 10 digits which signify
@@ -83,12 +90,25 @@ that inputs need to be shuffled for effective learning.
 
 ## 3. Implementation Goals
 
-One of our goals is to have as few or no dependencies. These
-implementations should be easy to integrate and that requires
-dependency free code. Another goal is to implement fast code. Nifty,
-one-liners which look good but have bad performance should be avoided.
-It is fine to use for loops for matrix multiplication, as an example
-(i.e. no fancy linear algebra libraries are needed).
+One of our goals is to have as few or no dependencies. These implementations
+should be easy to integrate and that requires dependency free code. Another goal
+is to implement fast code. Nifty, one-liners which look good but have bad
+performance should be avoided. It is fine to use for loops for matrix
+multiplication, as an example (i.e. no fancy linear algebra libraries are needed
+unless this is available in the standard library of the programming language).
+
+We strive for:
+
+- code that is easy to copy/paste for reuse
+- dependency-free code
+- adequate performance in favour of nifty one-liners
+- making it easy to serialize weights for storing and loading, but leave it for
+  the users own preference
+- implementations in all major languages
+- simple tests that verify our implementations and secure them for the future
+- having fun exploring neural networks!
+
+### 3.1. Simple Random Number Generator
 
 Now, a note about random number generation. Training a neural network requires
 that the initial weights are randomly assigned. We will specify a simple random
@@ -125,6 +145,8 @@ The first few random numbers are:
 0,172979253424788
 0,262310957192588
 ```
+
+### 3.2. License
 
 > All code must be licensed under the permissive MIT license.
 > No GPL!
