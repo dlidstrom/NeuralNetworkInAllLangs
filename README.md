@@ -1,6 +1,6 @@
 # Neural Network in All Langs <!-- omit in toc -->
 
-![networks](doc/networks.png)
+<img src="https://github.com/dlidstrom/NeuralNetworkInAllLangs/raw/main/doc/networks.png" width="400px">
 
 - [1. Training](#1-training)
   - [1.1. Logical Functions](#11-logical-functions)
@@ -411,6 +411,6 @@ are some things to keep in mind for good results:
 
 ## 6. References
 
-[1] <http://neuralnetworksanddeeplearning.com/>
-[2] <https://leon.bottou.org/publications/pdf/tricks-1998.pdf>
+[1] <http://neuralnetworksanddeeplearning.com/> <br>
+[2] <https://leon.bottou.org/publications/pdf/tricks-1998.pdf> <br>
 [3] <https://cs231n.github.io/neural-networks-2/>
