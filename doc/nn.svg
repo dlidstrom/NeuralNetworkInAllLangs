@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="cursor: move;" width="1440" height="900">
+    <g>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M560,400, 740,440"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M560,440, 740,440"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,400, 920,340"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,440, 920,340"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,400, 920,380"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,440, 920,380"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,400, 920,420"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,440, 920,420"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,400, 920,460"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,440, 920,460"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,400, 920,500"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,440, 920,500"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,400, 920,540"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,440, 920,540"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M560,400, 740,480"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M560,440, 740,480"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,480, 920,340"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,480, 920,380"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,480, 920,420"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,480, 920,460"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,480, 920,500"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M740,480, 920,540"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M560,480, 740,440"></path>
+        <path class="link" style="stroke-width: 0.5; stroke-opacity: 1; stroke: rgb(80, 80, 80); fill: none;"
+            marker-end="" d="M560,480, 740,480"></path>
+        <circle r="10" class="node" id="0_0" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="560"
+            cy="400"></circle>
+        <circle r="10" class="node" id="0_1" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="560"
+            cy="440"></circle>
+        <circle r="10" class="node" id="0_2" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="560"
+            cy="480"></circle>
+        <circle r="10" class="node" id="1_0" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="740"
+            cy="400"></circle>
+        <circle r="10" class="node" id="1_1" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="740"
+            cy="440"></circle>
+        <circle r="10" class="node" id="1_2" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="740"
+            cy="480"></circle>
+        <circle r="10" class="node" id="2_0" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="920"
+            cy="340"></circle><text class="text" dy=".35em" style="font-size: 12px;" x="525" y="580">Input Layer ∈
+            ℝ³</text><text class="text" dy=".35em" style="font-size: 12px;" x="705" y="580">Hidden Layer ∈
+            ℝ³</text><text class="text" dy=".35em" style="font-size: 12px;" x="885" y="580">Output Layer ∈ ℝ⁶</text>
+        <circle r="10" class="node" id="2_1" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="920"
+            cy="380"></circle>
+        <circle r="10" class="node" id="2_2" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="920"
+            cy="420"></circle>
+        <circle r="10" class="node" id="2_3" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="920"
+            cy="460"></circle>
+        <circle r="10" class="node" id="2_4" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="920"
+            cy="500"></circle>
+        <circle r="10" class="node" id="2_5" style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" cx="920"
+            cy="540"></circle>
+    </g>
+    <defs>
+        <marker id="arrow" viewBox="0 -5 10 10" markerWidth="7" markerHeight="7" orient="auto" refX="40">
+            <path d="M0,-5L10,0L0,5" style="stroke: rgb(80, 80, 80); fill: none;"></path>
+        </marker>
+    </defs>
+</svg>

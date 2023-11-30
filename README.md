@@ -1,12 +1,16 @@
 # Neural Network in All Langs <!-- omit in toc -->
 
+![networks](doc/networks.png)
+
 - [1. Training](#1-training)
   - [1.1. Logical Functions](#11-logical-functions)
+    - [1.1.1. Lithmus Test](#111-lithmus-test)
   - [1.2. Hand Written Digits](#12-hand-written-digits)
 - [2. Learning](#2-learning)
 - [3. Implementation Goals](#3-implementation-goals)
   - [3.1. Simple Random Number Generator](#31-simple-random-number-generator)
   - [3.2. License](#32-license)
+  - [3.3. Implementations](#33-implementations)
 - [4. Reference Implementation](#4-reference-implementation)
   - [4.1. Inputs and Randomized Starting Weights](#41-inputs-and-randomized-starting-weights)
   - [4.2. Forward Propagation](#42-forward-propagation)
@@ -21,18 +25,18 @@ implement a fully connected network with a single hidden layer using the sigmoid
 activation function for both the hidden and the output layer. This kind of
 network can be used to do hand writing recognition, or other kinds of pattern
 recognitions, categorizations, or predictions. This is intended as your entry
-level into ai programming, i.e. for the enthusiast or hobby programmer. Any more
-advanced use cases should look elsewhere as there are infinitely more powerful
-methods available for the professional.
+level into ai programming, i.e. for the enthusiast or hobby programmer (you and
+me). More advanced use cases should look elsewhere as there are infinitely more
+powerful methods available for the professional.
 
-We do not aim to go through the math involved (see [1] if you're interested). We
+We do not aim to justify the math involved (see [1] if you're interested). We
 prefer to focus on the code itself and will happily copy a solution from one
 programming language to another without worrying about the theoretical
 background.
 
 ## 1. Training
 
-For training we will use two datasets.
+For training and verifying our implementations we will use two datasets.
 
 ### 1.1. Logical Functions
 
@@ -52,10 +56,22 @@ This test is interesting as it shows how flexible a simple neural network can
 be. There are two inputs, 6 outputs, and it is sufficient to have two hidden
 neurons. Such a network consists of a total of 24 weights:
 
-- 4 hidden weights (2 inputs * 2 hidden)
+- 4 hidden weights (2 inputs * 2 hidden neurons)
 - 2 hidden biases (one for each hidden neuron)
-- 12 output weights (2 hidden * 6 outputs)
+- 12 output weights (2 hidden neurons * 6 output neurons)
 - 6 output biases (one for each output neuron)
+
+![nn](doc/nn.svg)
+
+#### 1.1.1. Lithmus Test
+
+The logical functions example can be used as a "lithmus test" of neural network
+implementations. A proper implementation will be able to learn the 6 functions
+using the 24 weights as detailed above. An improper implementation (one that
+doesn't implement biases correctly, for example) likely will need more hidden
+nodes to learn successfully (if at all). A larger network means more
+mathematical operations so keep this in mind when you evaluate other
+implementations. You don't want to waste cpu cycles unnecessarily.
 
 ### 1.2. Hand Written Digits
 
@@ -101,7 +117,7 @@ We strive for:
 
 - code that is easy to copy/paste for reuse
 - dependency-free code
-- adequate performance in favour of nifty one-liners
+- adequate performance in favour of nifty (but slow) one-liners
 - making it easy to serialize weights for storing and loading, but leave it for
   the users own preference
 - implementations in all major languages
@@ -148,32 +164,46 @@ The first few random numbers are:
 
 ### 3.2. License
 
-> All code must be licensed under the permissive MIT license.
-> No GPL!
+> All code must be licensed under the permissive MIT license. Please add license
+> to every source file. No GPL allowed!
+
+### 3.3. Implementations
+
+This is the current status of the implementations available. We follow a maturity model based on these criteria:
+
+- Level 0: implement logical functions network
+- Level 1: use modules/files to make implementation easy to reuse by copy/paste
+- Level 2: implement a unit test to verify level 0 and make the code future safe
+- Level 3: implement digit recognition with the Semeion dataset
+- Level 4: implement a unit test to verify level 3 and make the code future safe
+
+| Language | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Contributor |
+|-|-|-|-|-|-|-|
+| Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | @dlidstrom |
+| F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | @dlidstrom |
 
 ## 4. Reference Implementation
 
-For reference you can use this Python implementation which uses NumPy,
-but should be fairly easy to understand. Why Python? Because Python
+For reference we have [a Python implementation](./Python/Xor.py) which uses NumPy,
+and should be fairly easy to understand. Why Python? Because Python
 has become the *lingua franca* of ai programming. It is also easy to
 modify and fast to re-run, thus ideal for experiments.
 
-We will now go through the reference implementation and include some
-math diagrams for those that want to know what's going on. You'll see
-the *how* but not the *why* (see references section for that).
+We will now go through the reference implementation and include some math
+diagrams for those that want to know what's going on. You'll see the *how* but
+not the *why* (see references section for that).
 
-Here, one forward and one backward propagation is shown. You can use
-these values to verify your own calculations. The example is the logical
-functions shown earlier with the inputs being both `1`, i.e. `1 1`. There
-are 3 hidden neurons and 6 outputs (xor, xnor, and, nand, or, nor).
+Here, one forward and one backward propagation is shown. You can use these
+values to verify your own calculations. The example is the logical functions
+shown earlier with the inputs being both `1`, i.e. `1 1`. We will use 3 hidden
+neurons and 6 outputs (xor, xnor, and, nand, or, nor).
 
 ### 4.1. Inputs and Randomized Starting Weights
 
-2 inputs, 3 hidden neurons, 6 outputs. These are the initial values for the
-input layer and the hidden layer. $w$ is the weights, $b$ is the biases. Note
-that we are showing randomized biases here to help understand the calculations.
-For the implementation we will initialize biases to 0 per the recommendation
-here [3].
+These are the initial values for the input layer and the hidden layer. $w$ is
+the weights, $b$ is the biases. Note that we are showing randomized biases here
+to help understand the calculations. For the implementation we will initialize
+biases to 0 per the recommendation here [3].
 
 $$\begin{array}{rcl}
 input & = &
