@@ -2,6 +2,11 @@
 
 <img src="https://github.com/dlidstrom/NeuralNetworkInAllLangs/raw/main/doc/networks.png" width="400px">
 
+![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
+![F#](https://img.shields.io/badge/f%23-%23239120.svg?style=for-the-badge&logo=f-sharp)
+
+[![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
+
 - [1. Training](#1-training)
   - [1.1. Logical Functions](#11-logical-functions)
     - [1.1.1. Lithmus Test](#111-lithmus-test)
