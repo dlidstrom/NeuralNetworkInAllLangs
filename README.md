@@ -184,8 +184,8 @@ This is the current status of the implementations available. We follow a maturit
 
 | Language | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Contributor |
 |-|-|-|-|-|-|-|
-| Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | @dlidstrom |
-| F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | @dlidstrom |
+| Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+| F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 
 ## 4. Reference Implementation
 
