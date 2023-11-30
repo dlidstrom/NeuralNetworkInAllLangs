@@ -61,7 +61,7 @@ neurons. Such a network consists of a total of 24 weights:
 - 12 output weights (2 hidden neurons * 6 output neurons)
 - 6 output biases (one for each output neuron)
 
-![nn](doc/nn.svg)
+![nn](doc/nn.png)
 
 #### 1.1.1. Lithmus Test
 
