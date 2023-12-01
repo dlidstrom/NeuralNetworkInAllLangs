@@ -54,3 +54,15 @@ jobs:
       run: |
         dotnet publish --configuration Release --output app CSharp.csproj
         bats test.bats
+
+  cpp:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup
+      run: |
+        sudo npm install -g bats
+
+    - name: Tests
+      working-directory: Cpp
+      run: bats test.bats
