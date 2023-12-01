@@ -200,6 +200,8 @@ This is the current status of the implementations available. We follow a maturit
 |-|-|-|-|-|-|-|
 | Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+| C# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+| C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 
 ## 5. Reference Implementation
 
