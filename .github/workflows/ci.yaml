@@ -35,3 +35,22 @@ jobs:
     - name: Tests
       working-directory: Rust
       run: bats test.bats
+
+  csharp:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup
+      run: |
+        sudo npm install -g bats
+
+    - name: Setup dotnet 7
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Tests
+      working-directory: CSharp
+      run: |
+        dotnet publish --configuration Release --output app CSharp.csproj
+        bats test.bats
