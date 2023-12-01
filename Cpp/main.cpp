@@ -18,12 +18,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "neural.h"
+#include <iomanip>
 #include <iostream>
 
 using namespace Neural;
 
 namespace {
-    int ITERS = 4000;
+    const int ITERS = 4000;
+    const double lr = 1.0;
     u_int32_t P = 2147483647;
     u_int32_t A = 16807;
     u_int32_t current = 1;
@@ -33,16 +35,15 @@ namespace {
         return result;
     }
 
-    int Xor(int i, int j) { return i ^ j; }
-    int Xnor(int i, int j) { return 1 - Xor(i, j); }
-    int Or(int i, int j) { return i | j; }
-    int And(int i, int j) { return i & j; }
-    int Nor(int i, int j) { return 1 - Or(i, j); }
-    int Nand(int i, int j) { return 1 - And(i, j); }
+    size_t Xor(size_t i, size_t j) { return i ^ j; }
+    size_t Xnor(size_t i, size_t j) { return 1 - Xor(i, j); }
+    size_t Or(size_t i, size_t j) { return i | j; }
+    size_t And(size_t i, size_t j) { return i & j; }
+    size_t Nor(size_t i, size_t j) { return 1 - Or(i, j); }
+    size_t Nand(size_t i, size_t j) { return 1 - And(i, j); }
 }
 
 int main() {
-    Trainer trainer = Trainer::Create(2, 2, 6, Rand);
     Matrix inputs = Matrix();
     Matrix outputs = Matrix();
     for (size_t i = 0; i < 2; i++) {
@@ -59,20 +60,72 @@ int main() {
         }
     }
 
-    double lr = 1.0;
+    Trainer trainer = Trainer::Create(2, 2, 6, Rand);
     for (size_t i = 0; i < ITERS; i++) {
-        Vector input = inputs[i % inputs.size()];
-        Vector output = outputs[i % outputs.size()];
+        const Vector& input = inputs[i % inputs.size()];
+        const Vector& output = outputs[i % outputs.size()];
         trainer.Train(input, output, lr);
     }
 
-    std::cout << "Result after " << ITERS << " iterations" << std::endl;
-    for (auto r : trainer.Network().WeightsHidden()) {
+    std::cout
+        << "Result after "
+        << ITERS
+        << " iterations\n"
+        << "        XOR   XNOR    OR   AND   NOR   NAND\n";
+    const Network& network = trainer.network;
+    for (size_t i = 0; i < inputs.size(); i++) {
+        const Vector& input = inputs[i];
+        Vector pred = network.Predict(input);
+        std::cout
+            << std::fixed
+            << std::setprecision(0)
+            << input[0]
+            << ','
+            << input[1]
+            << " = "
+            << std::setprecision(3)
+            << pred[0]
+            << "  "
+            << pred[1]
+            << " "
+            << pred[2]
+            << " "
+            << pred[3]
+            << " "
+            << pred[4]
+            << "  "
+            << pred[5]
+            << '\n';
+    }
+
+    std::cout << "WeightsHidden:\n" << std::setprecision(6);
+    for (auto r : trainer.network.weightsHidden) {
         for (auto c : r) {
             std::cout << c << ' ';
         }
-        std::cout << std::endl;
+
+        std::cout << '\n';
     }
 
+    std::cout << "BiasesHidden:\n";
+    for (auto c : trainer.network.biasesHidden) {
+        std::cout << c << ' ';
+    }
+
+    std::cout << "\nWeightsOutput:\n";
+    for (auto r : trainer.network.weightsOutput) {
+        for (auto c : r) {
+            std::cout << c << ' ';
+        }
+
+        std::cout << '\n';
+    }
+
+    std::cout << "BiasesOutput:\n";
+    for (auto c : trainer.network.biasesOutput) {
+        std::cout << c << ' ';
+    }
+
+    std::cout << '\n';
     return 0;
 }
