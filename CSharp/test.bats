@@ -1,7 +1,3 @@
-setup() {
-    dotnet publish --configuration Release --output app CSharp.csproj
-}
-
 @test "xor" {
     run ./app/CSharp
     printf 'Lines:\n'

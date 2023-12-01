@@ -51,4 +51,6 @@ jobs:
 
     - name: Tests
       working-directory: CSharp
-      run: bats test.bats
+      run: |
+        dotnet publish --configuration Release --output app CSharp.csproj
+        bats test.bats
