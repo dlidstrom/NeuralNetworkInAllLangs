@@ -18,13 +18,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "neural.h"
-#include <iostream>
 
-namespace {
-    int ITERS = 4000;
-}
+namespace Neural {
+    Network::Network() {
+    }
 
-int main() {
-    std::cout << "Result after " << ITERS << " iterations" << std::endl;
-    return 0;
+    Trainer::Trainer() {
+    }
 }

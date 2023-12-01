@@ -17,14 +17,19 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "neural.h"
-#include <iostream>
+#if !defined(NEURAL_H)
+#define NEURAL_H
 
-namespace {
-    int ITERS = 4000;
+namespace Neural {
+    class Network {
+        public:
+            Network();
+    };
+
+    class Trainer {
+        public:
+            Trainer();
+    };
 }
 
-int main() {
-    std::cout << "Result after " << ITERS << " iterations" << std::endl;
-    return 0;
-}
+#endif
