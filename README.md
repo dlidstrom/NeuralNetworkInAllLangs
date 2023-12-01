@@ -45,7 +45,9 @@ programming language to another without worrying about the theoretical
 background.
 
 > 🚀 These dependency-free implementations are ready to be used in *your*
-> project as-is!
+> project as-is! Our implementations are all less than 200 lines, perform
+> well, only use the standard library, and can be made multi-threaded if
+> desired. This represents an excercise in simplicity.
 
 ## 2. Training
 
