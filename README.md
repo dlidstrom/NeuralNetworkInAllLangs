@@ -1,4 +1,4 @@
-# Neural Network in All Langs <!-- omit in toc -->
+# Neural Network in All Languages <!-- omit in toc -->
 
 <img src="https://github.com/dlidstrom/NeuralNetworkInAllLangs/raw/main/doc/networks.png" width="400px">
 
