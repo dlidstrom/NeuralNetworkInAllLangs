@@ -150,7 +150,7 @@ public record Trainer(
             Network.BiasesOutput[c] -= lr * GradOutput[c];
         }
 
-        for (int c = 0; c  < GradHidden.Length; c++)
+        for (int c = 0; c < GradHidden.Length; c++)
         {
             Network.BiasesHidden[c] -= lr * GradHidden[c];
         }

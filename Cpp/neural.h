@@ -20,15 +20,58 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #if !defined(NEURAL_H)
 #define NEURAL_H
 
+#include <functional>
+#include <vector>
+
 namespace Neural {
+    typedef std::vector<double> Vector;
+    typedef std::vector<Vector> Matrix;
     class Network {
-        public:
-            Network();
+        int hiddenCount;
+        int outputCount;
+        Matrix weightsHidden;
+        Vector biasesHidden;
+        Matrix weightsOutput;
+        Vector biasesOutput;
+    public:
+        Network(
+            int hiddenCount,
+            int outputCount,
+            Matrix&& weightsHidden,
+            Vector&& biasesHidden,
+            Matrix&& weightsOutput,
+            Vector&& biasesOutput);
+        int HiddenCount() const;
+        int OutputCount() const;
+        Matrix WeightsHidden() const;
+        Vector BiasesHidden() const;
+        Matrix WeightsOutput() const;
+        Vector BiasesOutput() const;
+        Vector Predict(const Vector& input) const;
+        Vector Predict(const Vector& input, Vector& hidden, Vector& output) const;
     };
 
     class Trainer {
-        public:
-            Trainer();
+        Network network;
+        Vector hidden;
+        Vector output;
+        Vector gradHidden;
+        Vector gradOutput;
+        Trainer(
+            Neural::Network&& network,
+            Neural::Vector&& hidden,
+            Neural::Vector&& output,
+            Neural::Vector&& gradHidden,
+            Neural::Vector&& gradOutput);
+    public:
+        const Network& Network() const;
+        const Vector& Hidden() const;
+        const Vector& Output() const;
+        const Vector& GradHidden() const;
+        const Vector& GradOutput() const;
+        static Trainer Create(Neural::Network&& network, int hiddenCount, int outputCount);
+        static Trainer Create(int inputCount, int hiddenCount, int outputCount, std::function<double()> rand);
+        void Train(const Vector& input, const Vector& output, double lr);
     };
 }
 

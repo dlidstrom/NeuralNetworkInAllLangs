@@ -16,14 +16,15 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 CXX=g++
+FLAGS=-std=c++17
 
 all: cpp
 
 cpp: main.o neural.o
-	$(CXX) -o cpp main.o neural.o
+	$(CXX) $(FLAGS) -o cpp main.o neural.o
 
 main.o: main.cpp
-	$(CXX) -c main.cpp
+	$(CXX) $(FLAGS) -c main.cpp
 
 neural.o: neural.cpp
-	$(CXX) -c neural.cpp
+	$(CXX) $(FLAGS) -c neural.cpp
