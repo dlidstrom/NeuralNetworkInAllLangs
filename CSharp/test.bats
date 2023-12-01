@@ -4,6 +4,9 @@ setup() {
 
 @test "xor" {
     run ./app/CSharp
+    printf 'Lines:\n'
+    printf 'lines %s\n' "${lines[@]}" >&2
+    printf 'output %s\n' "${output[@]}" >&2
     [ "${lines[0]}" = "Result after 4000 iterations" ]
     [ "${lines[1]}" = "        XOR   XNOR    OR   AND   NOR   NAND" ]
     [ "${lines[2]}" = "0,0 = 0.038  0.962 0.038 0.001 0.963  0.999" ]
