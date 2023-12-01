@@ -31,10 +31,9 @@ let randFloat =
 let xor a b = a ^^^ b
 let orf (a: int) b = a ||| b
 let andf (a: int) b = a &&& b
-let inv = (-) 1
-let xnor a b = xor a b |> inv
-let nand a b = andf a b |> inv
-let nor a b = orf a b |> inv
+let xnor a b = 1 - xor a b
+let nand a b = 1 - andf a b
+let nor a b = 1 - orf a b
 
 let trainingData = [|
   for i = 0 to 1 do
