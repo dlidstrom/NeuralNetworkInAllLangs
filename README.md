@@ -181,6 +181,14 @@ The first few random numbers are:
 0,262310957192588
 ```
 
+> This was chosen to avoid any complexity! There are widely used algorithms for
+> better random number generation but it isn't important in this case. We simply
+> need some starting values and they don't have to be very random as long as
+> they are all different. We might've just used the current microseconds!
+>
+> The code samples all contain an extension point where you can plug in your own
+> implementation, should you wish to do so (or just hardcode your choice!).
+
 ### 4.2. License
 
 > All code must be licensed under the permissive MIT license. Please add license
@@ -198,10 +206,54 @@ This is the current status of the implementations available. We follow a maturit
 
 | Language | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Contributor |
 |-|-|-|-|-|-|-|
+| C# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | [@dlidstrom](https://github.com/dlidstrom) |
 | Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
-| C# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+
+Digit recognition is done using only 14 hidden neurons, 10 learning epochs (an
+epoch is a run through the entire dataset), and a learning rate of 0.5. Using
+these hyper parameters we are able to recognize 99.1% of the Semeion digits
+accurately. You may be able to improve by adding more hidden neurons, doing more
+epochs, and annealing the learning rate (decrease slowly). However we are also
+at risk of over learning which decreases our network's ability to generalize (it
+learns too specific, i.e. the noise in the data set).
+
+Sample output (this shows accuracy in predicting the correct digit, and average
+confidence i.e. score of the largest output value):
+
+```bash
+~/CSharp $ dotnet run --semeion ../semeion.data 14 10 0.5
+accuracy: 85.876 % (1,368.00/1593), avg confidence: 68.060 %
+accuracy: 91.965 % (1,465.00/1593), avg confidence: 78.090 %
+accuracy: 95.041 % (1,514.00/1593), avg confidence: 84.804 %
+accuracy: 96.673 % (1,540.00/1593), avg confidence: 86.184 %
+accuracy: 97.552 % (1,554.00/1593), avg confidence: 88.259 %
+accuracy: 98.242 % (1,565.00/1593), avg confidence: 90.609 %
+accuracy: 98.745 % (1,573.00/1593), avg confidence: 92.303 %
+accuracy: 98.870 % (1,575.00/1593), avg confidence: 93.385 %
+accuracy: 98.870 % (1,575.00/1593), avg confidence: 93.261 %
+accuracy: 99.121 % (1,579.00/1593), avg confidence: 94.304 %
+        *******
+     ****** ***
+  ******     **
+ *****      ****
+****      *****
+***       ***
+**      *****
+**** **** ***
+ ******* ***
+         ***
+        ***
+       ***
+      ****
+     ***
+  ******
+  ***
+Guess: 9
+```
+
+Looks good, doesn't it?
 
 ## 5. Reference Implementation
 

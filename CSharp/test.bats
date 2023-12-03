@@ -1,5 +1,5 @@
 @test "xor" {
-    run ./app/CSharp
+    run ./app/CSharp --logical
     printf 'Lines:\n'
     printf 'lines %s\n' "${lines[@]}" >&2
     printf 'output %s\n' "${output[@]}" >&2
@@ -37,4 +37,38 @@
     [[ "${lines[43]}" =~ 3.36378125079356 ]]
     [[ "${lines[44]}" =~ -5.097046597754945 ]]
     [[ "${lines[45]}" =~ -3.361940360109141 ]]
+}
+
+@test "digits" {
+    run ./app/CSharp --semeion ../semeion.data 14 10 0.5
+    printf 'Lines:\n'
+    printf 'lines %s\n' "${lines[@]}" >&2
+    printf 'output %s\n' "${output[@]}" >&2
+    [ "${lines[0]}" = "accuracy: 85.876 % (1,368.00/1593), avg confidence: 68.060 %" ]
+    [ "${lines[1]}" = "accuracy: 91.965 % (1,465.00/1593), avg confidence: 78.090 %" ]
+    [ "${lines[2]}" = "accuracy: 95.041 % (1,514.00/1593), avg confidence: 84.804 %" ]
+    [ "${lines[3]}" = "accuracy: 96.673 % (1,540.00/1593), avg confidence: 86.184 %" ]
+    [ "${lines[4]}" = "accuracy: 97.552 % (1,554.00/1593), avg confidence: 88.259 %" ]
+    [ "${lines[5]}" = "accuracy: 98.242 % (1,565.00/1593), avg confidence: 90.609 %" ]
+    [ "${lines[6]}" = "accuracy: 98.745 % (1,573.00/1593), avg confidence: 92.303 %" ]
+    [ "${lines[7]}" = "accuracy: 98.870 % (1,575.00/1593), avg confidence: 93.385 %" ]
+    [ "${lines[8]}" = "accuracy: 98.870 % (1,575.00/1593), avg confidence: 93.261 %" ]
+    [ "${lines[9]}" = "accuracy: 99.121 % (1,579.00/1593), avg confidence: 94.304 %" ]
+    [ "${lines[10]}" = "        ******* " ]
+    [ "${lines[11]}" = "     ****** *** " ]
+    [ "${lines[12]}" = "  ******     ** " ]
+    [ "${lines[13]}" = " *****      ****" ]
+    [ "${lines[14]}" = "****      ***** " ]
+    [ "${lines[15]}" = "***       ***   " ]
+    [ "${lines[16]}" = "**      *****   " ]
+    [ "${lines[17]}" = "**** **** ***   " ]
+    [ "${lines[18]}" = " ******* ***    " ]
+    [ "${lines[19]}" = "         ***    " ]
+    [ "${lines[20]}" = "        ***     " ]
+    [ "${lines[21]}" = "       ***      " ]
+    [ "${lines[22]}" = "      ****      " ]
+    [ "${lines[23]}" = "     ***        " ]
+    [ "${lines[24]}" = "  ******        " ]
+    [ "${lines[25]}" = "  ***           " ]
+    [ "${lines[26]}" = "Guess: 9" ]
 }
