@@ -19,6 +19,7 @@
   - [4.1. Simple Random Number Generator](#41-simple-random-number-generator)
   - [4.2. License](#42-license)
   - [4.3. Implementations](#43-implementations)
+    - [4.3.1. Sample Output](#431-sample-output)
 - [5. Reference Implementation](#5-reference-implementation)
   - [5.1. Inputs and Randomized Starting Weights](#51-inputs-and-randomized-starting-weights)
   - [5.2. Forward Propagation](#52-forward-propagation)
@@ -210,6 +211,8 @@ This is the current status of the implementations available. We follow a maturit
 | F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 
+#### 4.3.1. Sample Output
+
 Digit recognition is done using only 14 hidden neurons, 10 learning epochs (an
 epoch is a run through the entire dataset), and a learning rate of 0.5. Using
 these hyper parameters we are able to recognize 99.1% of the Semeion digits
@@ -218,7 +221,7 @@ epochs, and annealing the learning rate (decrease slowly). However we are also
 at risk of over learning which decreases our network's ability to generalize (it
 learns too specific, i.e. the noise in the data set).
 
-Sample output (this shows accuracy in predicting the correct digit, and average
+This output shows accuracy in predicting the correct digit, and average
 confidence i.e. score of the largest output value):
 
 ```bash
