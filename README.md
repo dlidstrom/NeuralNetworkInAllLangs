@@ -39,15 +39,14 @@ level into ai programming, i.e. for the enthusiast or hobby programmer (you and
 me). More advanced use cases should look elsewhere as there are infinitely more
 powerful methods available for the professional.
 
+> Disclaimer! Do not expect blazing fast performance. If you have such
+> requirements or expectations then you should definitely look elsewhere. Stay
+> here if you want to learn more about implementing a neural network!
+
 We do not aim to justify the math involved (see [1] if you're interested). We
 prefer to focus on the code itself and will happily copy a solution from one
 programming language to another without worrying about the theoretical
 background.
-
-> 🚀 These dependency-free implementations are ready to be used in *your*
-> project as-is! Our implementations are all less than 200 lines, perform
-> well, only use the standard library, and can be made multi-threaded if
-> desired. This represents an excercise in simplicity.
 
 ## 2. Training
 
