@@ -222,7 +222,7 @@ at risk of over learning which decreases our network's ability to generalize (it
 learns too specific, i.e. the noise in the data set).
 
 This output shows accuracy in predicting the correct digit, and average
-confidence i.e. score of the largest output value):
+confidence i.e. score of the largest output value:
 
 ```bash
 ~/CSharp $ dotnet run --semeion ../semeion.data 14 10 0.5
