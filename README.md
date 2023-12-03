@@ -250,7 +250,17 @@ accuracy: 99.121 % (1579/1593), avg confidence: 94.304 %
      ***
   ******
   ***
-Guess: 9
+Prediction (output from network for the above input):
+0:  0.252 %
+1:  0.253 %
+2:  0.010 %
+3:  0.028 %
+4:  0.005 %
+5:  4.867 %
+6:  0.000 %
+7:  2.864 %
+8:  7.070 %
+9: 94.103 % <-- best prediction
 ```
 
 Looks good, doesn't it?

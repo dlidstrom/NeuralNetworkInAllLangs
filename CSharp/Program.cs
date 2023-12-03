@@ -104,9 +104,10 @@ else if (args[0] == "--semeion")
         Console.WriteLine($"accuracy: {accuracy:P3} ({correct:G0}/{allData.Length}), avg confidence: {averageConfidence:P3}");
     }
 
-    // predict first item
+    // predict an item
     DataItem predictItem = allData[10];
-    int guess = trainer.Network.Predict(predictItem.Input).Select((n, i) => (n, i)).Max().i;
+    (double, int)[] preds = trainer.Network.Predict(predictItem.Input).Select((n, i) => (n, i)).ToArray();
+    int maxPred = preds.Max().Item2;
     string pixels = string.Join(
         "",
         predictItem.Input.Select(x => x.ToString("N0")))
@@ -115,7 +116,17 @@ else if (args[0] == "--semeion")
         string.Join(
             Environment.NewLine,
             pixels.Chunk(16).Select(x => new string(x))));
-    Console.WriteLine($"Guess: {guess}");
+    Console.WriteLine("Prediction (output from network for the above input):");
+    foreach ((double conf, int n) in preds)
+    {
+        Console.Write($"{n}: {conf,8:P3}");
+        if (n == maxPred)
+        {
+            Console.Write(" <-- best prediction");
+        }
+
+        Console.WriteLine();
+    }
 }
 
 namespace Neural
