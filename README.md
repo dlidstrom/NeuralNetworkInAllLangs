@@ -224,16 +224,16 @@ confidence i.e. score of the largest output value):
 
 ```bash
 ~/CSharp $ dotnet run --semeion ../semeion.data 14 10 0.5
-accuracy: 85.876 % (1,368.00/1593), avg confidence: 68.060 %
-accuracy: 91.965 % (1,465.00/1593), avg confidence: 78.090 %
-accuracy: 95.041 % (1,514.00/1593), avg confidence: 84.804 %
-accuracy: 96.673 % (1,540.00/1593), avg confidence: 86.184 %
-accuracy: 97.552 % (1,554.00/1593), avg confidence: 88.259 %
-accuracy: 98.242 % (1,565.00/1593), avg confidence: 90.609 %
-accuracy: 98.745 % (1,573.00/1593), avg confidence: 92.303 %
-accuracy: 98.870 % (1,575.00/1593), avg confidence: 93.385 %
-accuracy: 98.870 % (1,575.00/1593), avg confidence: 93.261 %
-accuracy: 99.121 % (1,579.00/1593), avg confidence: 94.304 %
+accuracy: 85.876 % (1368/1593), avg confidence: 68.060 %
+accuracy: 91.965 % (1465/1593), avg confidence: 78.090 %
+accuracy: 95.041 % (1514/1593), avg confidence: 84.804 %
+accuracy: 96.673 % (1540/1593), avg confidence: 86.184 %
+accuracy: 97.552 % (1554/1593), avg confidence: 88.259 %
+accuracy: 98.242 % (1565/1593), avg confidence: 90.609 %
+accuracy: 98.745 % (1573/1593), avg confidence: 92.303 %
+accuracy: 98.870 % (1575/1593), avg confidence: 93.385 %
+accuracy: 98.870 % (1575/1593), avg confidence: 93.261 %
+accuracy: 99.121 % (1579/1593), avg confidence: 94.304 %
         *******
      ****** ***
   ******     **

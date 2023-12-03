@@ -101,7 +101,7 @@ else if (args[0] == "--semeion")
 
         // compute confidencies
         double averageConfidence = predictions.Select(x => x.confidence).Average();
-        Console.WriteLine($"accuracy: {accuracy:P3} ({correct:N2}/{allData.Length}), avg confidence: {averageConfidence:P3}");
+        Console.WriteLine($"accuracy: {accuracy:P3} ({correct:G0}/{allData.Length}), avg confidence: {averageConfidence:P3}");
     }
 
     // predict first item
