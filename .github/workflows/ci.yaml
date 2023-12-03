@@ -53,6 +53,7 @@ jobs:
       working-directory: CSharp
       run: |
         dotnet publish --configuration Release --output app CSharp.csproj
+        bunzip2 ../semeion.data.bz2
         bats test.bats
 
   cpp:
