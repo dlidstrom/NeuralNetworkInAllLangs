@@ -35,7 +35,12 @@ typedef struct Network {
 } Network;
 
 typedef double (*RandFcn)();
-Network network_create(uint32_t n_inputs, uint32_t n_hidden, uint32_t n_outputs, RandFcn rand);
+Network* network_init(
+    Network* network,
+    uint32_t n_inputs,
+    uint32_t n_hidden,
+    uint32_t n_outputs,
+    RandFcn rand);
 void network_free(Network* network);
 void network_predict(Network* network, double* input);
 
@@ -44,7 +49,7 @@ typedef struct Trainer {
     double* grad_output;
 } Trainer;
 
-Trainer trainer_create(Network* network);
+Trainer* trainer_init(Trainer* trainer, Network* network);
 void trainer_train(Trainer* trainer, Network* network, double* input, double* output, double lr);
 void trainer_free(Trainer* trainer);
 
