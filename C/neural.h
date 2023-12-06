@@ -48,14 +48,4 @@ Trainer trainer_create(Network* network);
 void trainer_train(Trainer* trainer, Network* network, double* input, double* output, double lr);
 void trainer_free(Trainer* trainer);
 
-/*    struct Network {
-        Matrix weightsHidden;
-        Vector biasesHidden;
-        Matrix weightsOutput;
-        Vector biasesOutput;
-        Vector Predict(const Vector& input) const;
-        Vector Predict(const Vector& input, Vector& hidden, Vector& output) const;
-    };
-*/
-
 #endif
