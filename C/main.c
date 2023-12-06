@@ -33,12 +33,12 @@ double Rand() {
 
 void print_network(const Network* network);
 
-static size_t xor(size_t i, size_t j) { return i ^ j; }
-static size_t xnor(size_t i, size_t j) { return 1 - xor(i, j); }
-static size_t or(size_t i, size_t j) { return i | j; }
-static size_t and(size_t i, size_t j) { return i & j; }
-static size_t nor(size_t i, size_t j) { return 1 - or(i, j); }
-static size_t nand(size_t i, size_t j) { return 1 - and(i, j); }
+static uint32_t xor(uint32_t i, uint32_t j) { return i ^ j; }
+static uint32_t xnor(uint32_t i, uint32_t j) { return 1 - xor(i, j); }
+static uint32_t or(uint32_t i, uint32_t j) { return i | j; }
+static uint32_t and(uint32_t i, uint32_t j) { return i & j; }
+static uint32_t nor(uint32_t i, uint32_t j) { return 1 - or(i, j); }
+static uint32_t nand(uint32_t i, uint32_t j) { return 1 - and(i, j); }
 
 const int ITERS = 4000;
 
