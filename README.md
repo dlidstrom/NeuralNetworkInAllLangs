@@ -6,6 +6,7 @@
 ![F#](https://img.shields.io/badge/f%23-%23239120.svg?style=for-the-badge&logo=f-sharp)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 
 [![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
 
@@ -210,6 +211,7 @@ This is the current status of the implementations available. We follow a maturit
 | Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+| C | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 
 #### 4.3.1. Sample Output
 
