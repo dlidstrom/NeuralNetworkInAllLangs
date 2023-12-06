@@ -43,8 +43,10 @@ static uint32_t nand(uint32_t i, uint32_t j) { return 1 - and(i, j); }
 const int ITERS = 4000;
 
 int main() {
-    Network network = network_create(2, 2, 6, Rand);
-    Trainer trainer = trainer_create(&network);
+    Network network = {0};
+    network_init(&network, 2, 2, 6, Rand);
+    Trainer trainer = {0};
+    trainer_init(&trainer, &network);
     double inputs[4][2] = {
         {0, 0},
         {0, 1},

@@ -24,38 +24,42 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 static double sigmoid(double f) { return 1.0 / (1.0 + exp(-f)); }
 static double sigmoid_prim(double f) { return f * (1.0 - f); }
 
-Network network_create(uint32_t n_inputs, uint32_t n_hidden, uint32_t n_outputs, RandFcn rand) {
-    Network network = {0};
-    network.n_inputs = n_inputs;
-    network.n_hidden = n_hidden;
-    network.n_outputs = n_outputs;
+Network* network_init(
+    Network* network,
+    uint32_t n_inputs,
+    uint32_t n_hidden,
+    uint32_t n_outputs,
+    RandFcn rand) {
+    network->n_inputs = n_inputs;
+    network->n_hidden = n_hidden;
+    network->n_outputs = n_outputs;
 
-    network.weights_hidden = calloc(
+    network->weights_hidden = calloc(
         n_inputs * n_outputs,
-        sizeof(*network.weights_hidden));
-    network.biases_hidden = calloc(
+        sizeof(*network->weights_hidden));
+    network->biases_hidden = calloc(
         n_hidden,
-        sizeof(*network.biases_hidden));
-    network.weights_output = calloc(
+        sizeof(*network->biases_hidden));
+    network->weights_output = calloc(
         n_hidden * n_outputs,
-        sizeof(*network.weights_output));
-    network.biases_output = calloc(
+        sizeof(*network->weights_output));
+    network->biases_output = calloc(
         n_outputs,
-        sizeof(*network.biases_output));
-    network.hidden = calloc(
+        sizeof(*network->biases_output));
+    network->hidden = calloc(
         n_hidden,
-        sizeof(*network.hidden));
-    network.output = calloc(
+        sizeof(*network->hidden));
+    network->output = calloc(
         n_outputs,
-        sizeof(*network.output));
+        sizeof(*network->output));
 
     // initialize everything but the biases
     for (size_t i = 0; i < n_inputs * n_hidden; i++) {
-        network.weights_hidden[i] = rand() - 0.5;
+        network->weights_hidden[i] = rand() - 0.5;
     }
 
     for (size_t i = 0; i < n_hidden * n_outputs; i++) {
-        network.weights_output[i] = rand() - 0.5;
+        network->weights_output[i] = rand() - 0.5;
     }
 
     return network;
@@ -92,10 +96,9 @@ void network_predict(Network* network, double* input) {
 
 /* trainer */
 
-Trainer trainer_create(Network* network) {
-    Trainer trainer = {0};
-    trainer.grad_hidden = calloc(network->n_hidden, sizeof(*trainer.grad_hidden));
-    trainer.grad_output = calloc(network->n_outputs, sizeof(*trainer.grad_output));
+Trainer* trainer_init(Trainer* trainer, Network* network) {
+    trainer->grad_hidden = calloc(network->n_hidden, sizeof(*trainer->grad_hidden));
+    trainer->grad_output = calloc(network->n_outputs, sizeof(*trainer->grad_output));
     return trainer;
 }
 
