@@ -49,7 +49,7 @@ $(BUILD_DIR)/$(BIN) : $(OBJ)
 # by calling `-include $(DEP)`.
 $(BUILD_DIR)/%.o : %.c
 	mkdir -p $(@D)
-	$(CC) $(CC_FLAGS) -MMD -c $< -o $@ -lm
+	$(CC) $(CC_FLAGS) -MMD -c $< -o $@
 
 .PHONY : clean
 clean :
