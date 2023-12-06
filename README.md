@@ -212,6 +212,10 @@ This is the current status of the implementations available. We follow a maturit
 | F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Python | <center>⭐️</center> | | | | | [@dlidstrom](https://github.com/dlidstrom) |
+
+> Note! The Python implementation is only here as a reference. If you are using Python you already
+> have access to all ai tools and libraries you need.
 
 #### 4.3.1. Sample Output
 
