@@ -17,10 +17,36 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-struct Network {
-    int hiddenCount;
-    int outputCount;
-};
+#if !defined(NEURAL_H)
+#define NEURAL_H
+
+#include <stdint.h>
+
+typedef struct Network {
+    double* weights_hidden;
+    double* biases_hidden;
+    double* weights_output;
+    double* biases_output;
+    double* hidden;
+    double* output;
+    uint32_t n_inputs;
+    uint32_t n_hidden;
+    uint32_t n_outputs;
+} Network;
+
+typedef double (*RandFcn)();
+Network network_create(uint32_t n_inputs, uint32_t n_hidden, uint32_t n_outputs, RandFcn rand);
+void network_free(Network* network);
+void network_predict(Network* network, double* input);
+
+typedef struct Trainer {
+    double* grad_hidden;
+    double* grad_output;
+} Trainer;
+
+Trainer trainer_create(Network* network);
+void trainer_train(Trainer* trainer, Network* network, double* input, double* output, double lr);
+void trainer_free(Trainer* trainer);
 
 /*    struct Network {
         Matrix weightsHidden;
@@ -31,3 +57,5 @@ struct Network {
         Vector Predict(const Vector& input, Vector& hidden, Vector& output) const;
     };
 */
+
+#endif

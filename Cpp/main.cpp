@@ -43,6 +43,8 @@ namespace {
     size_t Nand(size_t i, size_t j) { return 1 - And(i, j); }
 }
 
+void show_weights(const Network& network);
+
 int main() {
     Matrix inputs = Matrix();
     Matrix outputs = Matrix();
@@ -98,8 +100,14 @@ int main() {
             << '\n';
     }
 
+    show_weights(trainer.network);
+
+    return 0;
+}
+
+void show_weights(const Network& network) {
     std::cout << "WeightsHidden:\n" << std::setprecision(6);
-    for (auto r : trainer.network.weightsHidden) {
+    for (auto r : network.weightsHidden) {
         for (auto c : r) {
             std::cout << c << ' ';
         }
@@ -108,12 +116,12 @@ int main() {
     }
 
     std::cout << "BiasesHidden:\n";
-    for (auto c : trainer.network.biasesHidden) {
+    for (auto c : network.biasesHidden) {
         std::cout << c << ' ';
     }
 
     std::cout << "\nWeightsOutput:\n";
-    for (auto r : trainer.network.weightsOutput) {
+    for (auto r : network.weightsOutput) {
         for (auto c : r) {
             std::cout << c << ' ';
         }
@@ -122,10 +130,9 @@ int main() {
     }
 
     std::cout << "BiasesOutput:\n";
-    for (auto c : trainer.network.biasesOutput) {
+    for (auto c : network.biasesOutput) {
         std::cout << c << ' ';
     }
 
     std::cout << '\n';
-    return 0;
 }

@@ -40,8 +40,9 @@ Vector Network::Predict(const Vector& input, Vector& hidden, Vector& output) con
         double sum = 0.0;
         for (size_t r = 0; r < weightsHidden.size(); r++) {
             sum += input[r] * weightsHidden[r][c];
-            hidden[c] = sigmoid(sum + biasesHidden[c]);
         }
+
+        hidden[c] = sigmoid(sum + biasesHidden[c]);
     }
 
     for (size_t c = 0; c < weightsOutput[0].size(); c++) {
