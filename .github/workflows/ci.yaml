@@ -67,3 +67,15 @@ jobs:
     - name: Tests
       working-directory: Cpp
       run: bats test.bats
+
+  c:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup
+      run: |
+        brew install bats-core
+
+    - name: Tests
+      working-directory: C
+      run: bats test.bats

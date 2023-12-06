@@ -15,20 +15,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-CXX = clang++
-CXX_FLAGS = -std=c++17 -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow
+CC = clang
+CC_FLAGS = -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow
 
 # Final binary
-BIN = cpp
+BIN = cmain
 
 # Put all auto generated stuff to this build dir.
 BUILD_DIR = ./build
 
-# List of all .cpp source files.
-CPP = main.cpp $(wildcard *.cpp)
+# List of all .c source files.
+CCS = main.c $(wildcard *.c)
 
 # All .o files go to build dir.
-OBJ = $(CPP:%.cpp=$(BUILD_DIR)/%.o)
+OBJ = $(CCS:%.c=$(BUILD_DIR)/%.o)
 
 # Gcc/Clang will create these .d files containing dependencies.
 DEP = $(OBJ:%.o=%.d)
@@ -39,7 +39,7 @@ $(BIN) : $(BUILD_DIR)/$(BIN)
 # Actual target of the binary - depends on all .o files.
 $(BUILD_DIR)/$(BIN) : $(OBJ)
 	mkdir -p $(@D)
-	$(CXX) $(CXX_FLAGS) $^ -o $@
+	$(CC) $(CC_FLAGS) $^ -o $@
 
 # Include all .d files
 -include $(DEP)
@@ -47,9 +47,9 @@ $(BUILD_DIR)/$(BIN) : $(OBJ)
 # Build target for every single object file.
 # The potential dependency on header files is covered
 # by calling `-include $(DEP)`.
-$(BUILD_DIR)/%.o : %.cpp
+$(BUILD_DIR)/%.o : %.c
 	mkdir -p $(@D)
-	$(CXX) $(CXX_FLAGS) -MMD -c $< -o $@
+	$(CC) $(CC_FLAGS) -MMD -c $< -o $@
 
 .PHONY : clean
 clean :
