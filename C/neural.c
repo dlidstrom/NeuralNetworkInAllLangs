@@ -35,7 +35,7 @@ Network* network_init(
     network->n_outputs = n_outputs;
 
     network->weights_hidden = calloc(
-        n_inputs * n_outputs,
+        n_inputs * n_hidden,
         sizeof(*network->weights_hidden));
     network->biases_hidden = calloc(
         n_hidden,

@@ -107,9 +107,9 @@ int main() {
 
 void show_weights(const Network& network) {
     std::cout << "WeightsHidden:\n" << std::setprecision(6);
-    for (auto r : network.weightsHidden) {
-        for (auto c : r) {
-            std::cout << c << ' ';
+    for (size_t i = 0; i < network.inputCount; i++) {
+        for (size_t j = 0; j < network.hiddenCount; j++) {
+            std::cout << network.weightsHidden[network.inputCount * i + j] << ' ';
         }
 
         std::cout << '\n';
@@ -121,9 +121,9 @@ void show_weights(const Network& network) {
     }
 
     std::cout << "\nWeightsOutput:\n";
-    for (auto r : network.weightsOutput) {
-        for (auto c : r) {
-            std::cout << c << ' ';
+    for (size_t i = 0; i < network.hiddenCount; i++) {
+        for (size_t j = 0; j < network.outputCount; j++) {
+            std::cout << network.weightsOutput[network.outputCount * i + j] << ' ';
         }
 
         std::cout << '\n';
