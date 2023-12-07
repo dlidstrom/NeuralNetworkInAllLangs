@@ -34,22 +34,25 @@ pub type Matrix = Vec<Vector>;
 
 #[derive(Debug)]
 pub struct Network {
-    pub weights_hidden: Matrix,
+    pub weights_hidden: Vector,
     pub biases_hidden: Vector,
-    pub weights_output: Matrix,
+    pub weights_output: Vector,
     pub biases_output: Vector,
+    n_inputs: usize,
     n_hidden: usize,
     n_outputs: usize
 }
 impl Network {
     pub fn new(
+        n_inputs: usize,
         n_hidden: usize,
         n_outputs: usize,
-        weights_hidden: Matrix,
+        weights_hidden: Vector,
         biases_hidden: Vector,
-        weights_output: Matrix,
+        weights_output: Vector,
         biases_output: Vector) -> Network {
         Network {
+            n_inputs,
             n_hidden,
             n_outputs,
             weights_hidden,
@@ -67,24 +70,26 @@ impl Network {
     }
 
     pub fn predict_inplace(&self, input: &Vector, y_hidden: &mut Vector, y_output: &mut Vector) -> () {
-        for c in 0..self.weights_hidden[0].len() {
+        for c in 0..self.n_hidden {
             let mut sum = 0.0;
-            for r in 0..self.weights_hidden.len() {
-                sum += input[r] * self.weights_hidden[r][c]
+            for r in 0..self.n_inputs {
+                sum += input[r] * self.weights_hidden[r * self.n_hidden + c]
             }
 
             y_hidden[c] = sigmoid(sum + self.biases_hidden[c]);
         }
 
-        for c in 0..self.weights_output[0].len() {
+        for c in 0..self.n_outputs {
             let mut sum = 0.0;
-            for r in 0..self.weights_output.len() {
-                sum += y_hidden[r] * self.weights_output[r][c]
+            for r in 0..self.n_hidden {
+                sum += y_hidden[r] * self.weights_output[r * self.n_outputs + c]
             }
+
             y_output[c] = sigmoid(sum + self.biases_output[c])
         }
     }
 }
+
 pub struct Trainer {
     pub network: Network,
     y_hidden: Vector,
@@ -104,24 +109,21 @@ impl Trainer {
         Trainer { network, y_hidden, y_output, grad_hidden, grad_output }
     }
 
-    pub fn new(n_inputs: u32, n_hidden: usize, n_outputs: usize, rnd: &mut Rnd) -> Trainer {
-        let mut weights_hidden = Matrix::new();
-        for _ in 0..n_inputs {
-            let mut row = Vector::new();
-            for _ in 0..n_hidden { row.push(rnd.next_float() - 0.5); }
-            weights_hidden.push(row);
+    pub fn new(n_inputs: usize, n_hidden: usize, n_outputs: usize, rnd: &mut Rnd) -> Trainer {
+        let mut weights_hidden = vec![0.0; n_inputs * n_hidden];
+        for _ in 0..n_inputs * n_hidden {
+            weights_hidden.push(rnd.next_float() - 0.5);
         }
 
         let biases_hidden = vec![0.0; n_hidden];
-        let mut weights_output = Matrix::new();
-        for _ in 0..n_hidden {
-            let mut row = Vector::new();
-            for _ in 0..n_outputs { row.push(rnd.next_float() - 0.5); }
-            weights_output.push(row);
+        let mut weights_output = vec![0.0; n_hidden * n_outputs];
+        for _ in 0..n_hidden * n_outputs {
+            weights_output.push(rnd.next_float() - 0.5);
         }
 
         let biases_output = vec![0.0; n_outputs];
         let network = Network::new(
+            n_inputs,
             n_hidden,
             n_outputs,
             weights_hidden,
@@ -133,28 +135,28 @@ impl Trainer {
 
     pub fn train(&mut self, input: &Vector, y: &Vector, lr: f64) -> () {
         self.network.predict_inplace(&input, &mut self.y_hidden, &mut self.y_output);
-        for c in 0..self.y_output.len() {
+        for c in 0..self.network.n_outputs {
             self.grad_output[c] = (self.y_output[c] - y[c]) * sigmoid_prim(self.y_output[c]);
         }
 
-        for r in 0..self.network.weights_output.len() {
+        for r in 0..self.network.n_hidden {
             let mut sum = 0.0;
-            for c in 0..self.network.weights_output[0].len() {
-                sum += self.grad_output[c] * self.network.weights_output[r][c];
+            for c in 0..self.network.n_outputs {
+                sum += self.grad_output[c] * self.network.weights_output[r * self.network.n_outputs + c];
             }
 
             self.grad_hidden[r] = sum * sigmoid_prim(self.y_hidden[r]);
         }
 
-        for r in 0..self.network.weights_output.len() {
-            for c in 0..self.network.weights_output[0].len() {
-                self.network.weights_output[r][c] -= lr * self.grad_output[c] * self.y_hidden[r];
+        for r in 0..self.network.n_hidden {
+            for c in 0..self.network.n_outputs {
+                self.network.weights_output[r * self.network.n_outputs + c] -= lr * self.grad_output[c] * self.y_hidden[r];
             }
         }
 
-        for r in 0..self.network.weights_hidden.len() {
-            for c in 0..self.network.weights_hidden[0].len() {
-                self.network.weights_hidden[r][c] -= lr * self.grad_hidden[c] * input[r];
+        for r in 0..self.network.n_inputs {
+            for c in 0..self.network.n_hidden {
+                self.network.weights_hidden[r * self.network.n_hidden + c] -= lr * self.grad_hidden[c] * input[r];
             }
         }
 
