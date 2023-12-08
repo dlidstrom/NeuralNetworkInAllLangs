@@ -79,3 +79,11 @@ jobs:
     - name: Tests
       working-directory: C
       run: bats test.bats
+
+  kotlin:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      working-directory: Kotlin
+      run: make
