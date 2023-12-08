@@ -110,13 +110,13 @@ impl Trainer {
     }
 
     pub fn new(n_inputs: usize, n_hidden: usize, n_outputs: usize, rnd: &mut Rnd) -> Trainer {
-        let mut weights_hidden = vec![0.0; n_inputs * n_hidden];
+        let mut weights_hidden = Vector::new();
         for _ in 0..n_inputs * n_hidden {
             weights_hidden.push(rnd.next_float() - 0.5);
         }
 
         let biases_hidden = vec![0.0; n_hidden];
-        let mut weights_output = vec![0.0; n_hidden * n_outputs];
+        let mut weights_output = Vector::new();
         for _ in 0..n_hidden * n_outputs {
             weights_output.push(rnd.next_float() - 0.5);
         }
