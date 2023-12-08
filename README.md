@@ -218,7 +218,6 @@ This is the current status of the implementations available. We follow a maturit
 
 > Note! The Python implementation is only here as a reference. If you are using Python you already
 > have access to all ai tools and libraries you need.
-> Note 2! Kotlin seems to be off, not sure why yet.
 
 #### 4.3.1. Sample Output
 

@@ -86,4 +86,4 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       working-directory: Kotlin
-      run: make
+      run: make && make run
