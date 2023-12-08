@@ -28,11 +28,12 @@ type Vector = float []
 type Matrix = Vector []
 
 type Network(
+  n_inputs,
   n_hidden,
   n_outputs,
-  weightsHidden: Matrix,
+  weightsHidden: Vector,
   biasesHidden: Vector,
-  weightsOutput: Matrix,
+  weightsOutput: Vector,
   biasesOutput: Vector) =
   member val WeightsHidden = weightsHidden
   member val BiasesHidden = biasesHidden
@@ -45,63 +46,59 @@ type Network(
     this.Predict(input, y_hidden, y_output)
 
   member _.Predict (input: Vector, y_hidden, y_output) =
-    for c = 0 to weightsHidden[0].Length - 1 do
+    for c = 0 to n_hidden - 1 do
       let mutable sum = 0.
-      for r = 0 to weightsHidden.Length - 1 do
-        sum <- sum + input[r] * weightsHidden[r][c]
+      for r = 0 to n_inputs - 1 do
+        sum <- sum + input[r] * weightsHidden[r * n_hidden + c]
       y_hidden[c] <- sigmoid (sum + biasesHidden[c])
 
-    for c = 0 to weightsOutput[0].Length - 1 do
+    for c = 0 to n_outputs - 1 do
       let mutable sum = 0.
-      for r = 0 to weightsOutput.Length - 1 do
-        sum <- sum + y_hidden[r] * weightsOutput[r][c]
+      for r = 0 to n_hidden - 1 do
+        sum <- sum + y_hidden[r] * weightsOutput[r * n_outputs + c]
       y_output[c] <- sigmoid (sum + biasesOutput[c])
+
     y_output
 
-type Trainer(network, n_hidden, n_outputs) =
+type Trainer(network, n_inputs, n_hidden, n_outputs) =
   let y_hidden = Array.zeroCreate n_hidden
   let y_output = Array.zeroCreate n_outputs
   let grad_hidden = Array.zeroCreate n_hidden
   let grad_output = Array.zeroCreate n_outputs
   new(n_inputs, n_hidden, n_outputs, randFloat) =
-    let weightsHidden = [|
-      for _ in 1..n_inputs do
-        Array.init n_hidden (fun _ -> randFloat() - 0.5)
-    |]
+    let weightsHidden = Array.init (n_inputs * n_hidden) (fun _ -> randFloat() - 0.5)
     let biasesHidden = Array.zeroCreate n_hidden
-    let weightsOutput = [|
-      for _ in 1..n_hidden do
-        Array.init n_outputs (fun _ -> randFloat() - 0.5)
-    |]
+    let weightsOutput = Array.init (n_hidden * n_outputs) (fun _ -> randFloat() - 0.5)
     let biasesOutput = Array.zeroCreate n_outputs
     let network = Network(
+      n_inputs,
       n_hidden,
       n_outputs,
       weightsHidden,
       biasesHidden,
       weightsOutput,
       biasesOutput)
-    Trainer(network, n_hidden, n_outputs)
+    Trainer(network, n_inputs, n_hidden, n_outputs)
   member val Network = network
 
   member _.Train (input: Vector, y: Vector, lr) =
     network.Predict(input, y_hidden, y_output) |> ignore<Vector>
-    for c = 0 to y_output.Length - 1 do
+    for c = 0 to n_outputs - 1 do
       grad_output[c] <- (y_output[c] - y[c]) * sigmoid' y_output[c]
 
-    for r = 0 to network.WeightsOutput.Length - 1 do
+    for r = 0 to n_hidden - 1 do
       let mutable sum = 0.
-      for c = 0 to network.WeightsOutput[0].Length - 1 do
-        sum <- sum + grad_output[c] * network.WeightsOutput[r][c]
+      for c = 0 to n_outputs - 1 do
+        sum <- sum + grad_output[c] * network.WeightsOutput[r * n_outputs + c]
       grad_hidden[r] <- sum * sigmoid' y_hidden[r]
 
-    for r = 0 to network.WeightsOutput.Length - 1 do
-      for c = 0 to network.WeightsOutput[0].Length - 1 do
-        network.WeightsOutput[r][c] <- network.WeightsOutput[r][c] - lr * grad_output[c] * y_hidden[r]
+    for r = 0 to n_hidden - 1 do
+      for c = 0 to n_outputs - 1 do
+        network.WeightsOutput[r * n_outputs + c] <- network.WeightsOutput[r * n_outputs + c] - lr * grad_output[c] * y_hidden[r]
 
-    for r = 0 to network.WeightsHidden.Length - 1 do
-      for c = 0 to network.WeightsHidden[0].Length - 1 do
-        network.WeightsHidden[r][c] <- network.WeightsHidden[r][c] - lr * grad_hidden[c] * input[r]
+    for r = 0 to n_inputs - 1 do
+      for c = 0 to n_hidden - 1 do
+        network.WeightsHidden[r * n_hidden + c] <- network.WeightsHidden[r * n_hidden + c] - lr * grad_hidden[c] * input[r]
 
     for c = 0 to grad_output.Length - 1 do
       network.BiasesOutput[c] <- network.BiasesOutput[c] - lr * grad_output[c]
