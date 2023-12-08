@@ -7,6 +7,7 @@
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
 
 [![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
 
@@ -212,10 +213,12 @@ This is the current status of the implementations available. We follow a maturit
 | F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Kotlin | <center>⭐️</center> | | | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Python | <center>⭐️</center> | | | | | [@dlidstrom](https://github.com/dlidstrom) |
 
 > Note! The Python implementation is only here as a reference. If you are using Python you already
 > have access to all ai tools and libraries you need.
+> Note 2! Kotlin seems to be off, not sure why yet.
 
 #### 4.3.1. Sample Output
 
