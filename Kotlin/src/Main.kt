@@ -47,10 +47,9 @@ fun main() {
 
   val lr = 1.0
   val ITERS = 4000
-  for (i in 1..ITERS) {
-    for (it in trainingData) {
-      trainer.train(it.first, it.second, lr)
-    }
+  for (i in 0..<ITERS) {
+    val it = trainingData[i % 4]
+    trainer.train(it.first, it.second, lr)
   }
 
   println("Result after ${ITERS} iterations")
