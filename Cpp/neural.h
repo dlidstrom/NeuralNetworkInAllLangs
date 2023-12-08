@@ -27,11 +27,12 @@ namespace Neural {
     typedef std::vector<double> Vector;
     typedef std::vector<Vector> Matrix;
     struct Network {
+        size_t inputCount;
         size_t hiddenCount;
         size_t outputCount;
-        Matrix weightsHidden;
+        Vector weightsHidden;
         Vector biasesHidden;
-        Matrix weightsOutput;
+        Vector weightsOutput;
         Vector biasesOutput;
         Vector Predict(const Vector& input) const;
         Vector Predict(const Vector& input, Vector& hidden, Vector& output) const;

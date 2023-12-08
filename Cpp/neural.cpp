@@ -36,19 +36,19 @@ Vector Network::Predict(const Vector& input) const {
 }
 
 Vector Network::Predict(const Vector& input, Vector& hidden, Vector& output) const {
-    for (std::size_t c = 0; c < weightsHidden[0].size(); c++) {
+    for (std::size_t c = 0; c < hiddenCount; c++) {
         double sum = 0.0;
-        for (size_t r = 0; r < weightsHidden.size(); r++) {
-            sum += input[r] * weightsHidden[r][c];
+        for (size_t r = 0; r < input.size(); r++) {
+            sum += input[r] * weightsHidden[r * hiddenCount + c];
         }
 
         hidden[c] = sigmoid(sum + biasesHidden[c]);
     }
 
-    for (size_t c = 0; c < weightsOutput[0].size(); c++) {
+    for (size_t c = 0; c < outputCount; c++) {
         double sum = 0.0;
-        for (size_t r = 0; r < weightsOutput.size(); r++) {
-            sum += hidden[r] * weightsOutput[r][c];
+        for (size_t r = 0; r < hiddenCount; r++) {
+            sum += hidden[r] * weightsOutput[r * outputCount + c];
         }
 
         output[c] = sigmoid(sum + biasesOutput[c]);
@@ -65,11 +65,11 @@ Trainer Trainer::Create(Neural::Network&& network, size_t hiddenCount, size_t ou
     Vector gradHidden = Vector(hiddenCount);
     Vector gradOutput = Vector(outputCount);
     return Trainer {
-        std::move(network),
-        std::move(hidden),
-        std::move(output),
-        std::move(gradHidden),
-        std::move(gradOutput)
+        network,
+        hidden,
+        output,
+        gradHidden,
+        gradOutput
     };
 }
 
@@ -78,25 +78,20 @@ Trainer Trainer::Create(size_t inputCount, size_t hiddenCount, size_t outputCoun
     Vector output = Vector(outputCount);
     Vector gradHidden = Vector(hiddenCount);
     Vector gradOutput = Vector(outputCount);
-    Matrix weightsHidden = Matrix();
-    for (size_t i = 0; i < inputCount; i++) {
-        Vector v;
-        for (size_t j = 0; j < hiddenCount; j++)
-            v.push_back(rand() - 0.5);
-        weightsHidden.push_back(v);
+    Vector weightsHidden = Vector();
+    for (size_t i = 0; i < inputCount * hiddenCount; i++) {
+        weightsHidden.push_back(rand() - 0.5);
     }
 
     Vector biasesHidden = Vector(hiddenCount);
-    Matrix weightsOutput = Matrix();
-    for (size_t i = 0; i < hiddenCount; i++) {
-        Vector v;
-        for (size_t j = 0; j < outputCount; j++)
-            v.push_back(rand() - 0.5);
-        weightsOutput.push_back(v);
+    Vector weightsOutput = Vector();
+    for (size_t i = 0; i < hiddenCount * outputCount; i++) {
+        weightsOutput.push_back(rand() - 0.5);
     }
 
     Vector biasesOutput = Vector(outputCount);
     Neural::Network network = {
+        inputCount,
         hiddenCount,
         outputCount,
         std::move(weightsHidden),
@@ -105,11 +100,11 @@ Trainer Trainer::Create(size_t inputCount, size_t hiddenCount, size_t outputCoun
         std::move(biasesOutput)
     };
     return Trainer {
-        std::move(network),
-        std::move(hidden),
-        std::move(output),
-        std::move(gradHidden),
-        std::move(gradOutput)
+        network,
+        hidden,
+        output,
+        gradHidden,
+        gradOutput
     };
 }
 
@@ -119,24 +114,24 @@ void Trainer::Train(const Vector& input, const Vector& y, double lr) {
         gradOutput[c] = (output[c] - y[c]) * sigmoid_prim(output[c]);
     }
 
-    for (size_t r = 0; r < network.weightsOutput.size(); r++) {
+    for (size_t r = 0; r < network.hiddenCount; r++) {
         double sum = 0.0;
-        for (size_t c = 0; c < network.weightsOutput[0].size(); c++) {
-            sum += gradOutput[c] * network.weightsOutput[r][c];
+        for (size_t c = 0; c < network.outputCount; c++) {
+            sum += gradOutput[c] * network.weightsOutput[r * network.outputCount + c];
         }
 
         gradHidden[r] = sum * sigmoid_prim(hidden[r]);
     }
 
-    for (size_t r = 0; r < network.weightsOutput.size(); r++) {
-        for (size_t c = 0; c < network.weightsOutput[0].size(); c++) {
-            network.weightsOutput[r][c] -= lr * gradOutput[c] * hidden[r];
+    for (size_t r = 0; r < network.hiddenCount; r++) {
+        for (size_t c = 0; c < network.outputCount; c++) {
+            network.weightsOutput[r * network.outputCount + c] -= lr * gradOutput[c] * hidden[r];
         }
     }
 
-    for (size_t r = 0; r < network.weightsHidden.size(); r++) {
-        for (size_t c = 0; c < network.weightsHidden[0].size(); c++) {
-            network.weightsHidden[r][c] -= lr * gradHidden[c] * input[r];
+    for (size_t r = 0; r < network.hiddenCount; r++) {
+        for (size_t c = 0; c < network.outputCount; c++) {
+            network.weightsHidden[r * network.hiddenCount + c] -= lr * gradHidden[c] * input[r];
         }
     }
 
