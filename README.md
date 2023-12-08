@@ -208,17 +208,17 @@ This is the current status of the implementations available. We follow a maturit
 
 | Language | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Contributor |
 |-|-|-|-|-|-|-|
-| C# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | [@dlidstrom](https://github.com/dlidstrom) |
-| Rust | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
-| F# | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
-| C++ | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
-| C | <center>⭐️</center> | <center>⭐️</center> | <center>⭐️</center> | | | [@dlidstrom](https://github.com/dlidstrom) |
-| Kotlin | <center>⭐️</center> | <center>⭐️</center> | | | | [@dlidstrom](https://github.com/dlidstrom) |
-| Python | <center>⭐️</center> | | | | | [@dlidstrom](https://github.com/dlidstrom) |
+| C# | ⭐️ | ⭐️ | ⭐️ | ⭐️ | ⭐️ | [@dlidstrom](https://github.com/dlidstrom) |
+| Rust | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| F# | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| C++ | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| C | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Kotlin | ⭐️ | ⭐️ | | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Python | ⭐️ | | | | | [@dlidstrom](https://github.com/dlidstrom) |
 
 > Note! The Python implementation is only here as a reference. If you are using Python you already
 > have access to all ai tools and libraries you need.
-> 
+>
 > Note 2! Kotlin seems to be off, not sure why yet.
 
 #### 4.3.1. Sample Output

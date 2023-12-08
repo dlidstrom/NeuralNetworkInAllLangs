@@ -31,7 +31,7 @@ fun main() {
 
   val xor: (Int, Int) -> Int = Int::xor
   val and: (Int, Int) -> Int = Int::and
-  var or: (Int, Int) -> Int = Int::or
+  val or: (Int, Int) -> Int = Int::or
   val inputs = arrayOf(arrayOf(0, 0), arrayOf(0, 1), arrayOf(1, 0), arrayOf(1, 1))
   val trainingData = inputs.map {
     Pair(
