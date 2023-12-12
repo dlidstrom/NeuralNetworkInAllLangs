@@ -87,3 +87,11 @@ jobs:
     - name: Build
       working-directory: Kotlin
       run: make && make run
+
+  go:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      working-directory: Go
+      run: go build .
