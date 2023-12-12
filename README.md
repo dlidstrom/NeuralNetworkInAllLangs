@@ -193,8 +193,17 @@ The first few random numbers are:
 
 ### 4.2. License
 
-> All code must be licensed under the permissive MIT license. Please add license
-> to every source file. No GPL allowed!
+All code *in this repository* is licensed under MIT license.
+This is a **permissive** license and you can use this code in your
+personal projects, or commercial as well, without needing to share
+anything back. MIT license is the most common license on GitHub.
+
+If you would like to contribute to this repository, for example
+by adding an implemention in another programming language,
+then you must also accept your code with MIT license.
+
+> All code in this repo must be licensed under the permissive MIT license.
+> Please add license header to every source file. No GPL allowed!
 
 ### 4.3. Implementations
 
