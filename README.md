@@ -200,7 +200,7 @@ anything back. MIT license is the most common license on GitHub.
 
 If you would like to contribute to this repository, for example
 by adding an implemention in another programming language,
-then you must also accept your code with MIT license.
+then you must also license your implementation with MIT license.
 
 > All code in this repo must be licensed under the permissive MIT license.
 > Please add license header to every source file. No GPL allowed!
