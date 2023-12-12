@@ -141,12 +141,12 @@ public record Trainer(
             }
         }
 
-        for (int c = 0; c < GradOutput.Length; c++)
+        for (int c = 0; c < Network.OutputCount; c++)
         {
             Network.BiasesOutput[c] -= lr * GradOutput[c];
         }
 
-        for (int c = 0; c < GradHidden.Length; c++)
+        for (int c = 0; c < Network.HiddenCount; c++)
         {
             Network.BiasesHidden[c] -= lr * GradHidden[c];
         }

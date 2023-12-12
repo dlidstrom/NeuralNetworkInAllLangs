@@ -160,11 +160,11 @@ impl Trainer {
             }
         }
 
-        for c in 0..self.grad_output.len() {
+        for c in 0..self.network.n_outputs {
             self.network.biases_output[c] -= lr * self.grad_output[c];
         }
 
-        for c in 0..self.grad_hidden.len() {
+        for c in 0..self.network.n_hidden {
             self.network.biases_hidden[c] -= lr * self.grad_hidden[c];
         }
     }

@@ -135,11 +135,11 @@ void Trainer::Train(const Vector& input, const Vector& y, double lr) {
         }
     }
 
-    for (size_t c = 0; c < gradOutput.size(); c++) {
+    for (size_t c = 0; c < network.outputCount; c++) {
         network.biasesOutput[c] -= lr * gradOutput[c];
     }
 
-    for (size_t c = 0; c < gradHidden.size(); c++) {
+    for (size_t c = 0; c < network.hiddenCount; c++) {
         network.biasesHidden[c] -= lr * gradHidden[c];
     }
 }

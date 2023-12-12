@@ -100,8 +100,8 @@ type Trainer(network, n_inputs, n_hidden, n_outputs) =
       for c = 0 to n_hidden - 1 do
         network.WeightsHidden[r * n_hidden + c] <- network.WeightsHidden[r * n_hidden + c] - lr * grad_hidden[c] * input[r]
 
-    for c = 0 to grad_output.Length - 1 do
+    for c = 0 to n_outputs - 1 do
       network.BiasesOutput[c] <- network.BiasesOutput[c] - lr * grad_output[c]
 
-    for c = 0 to grad_hidden.Length - 1 do
+    for c = 0 to n_hidden - 1 do
       network.BiasesHidden[c] <- network.BiasesHidden[c] - lr * grad_hidden[c]
