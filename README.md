@@ -63,6 +63,30 @@ accuracy is achived.
 
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Rust/src/main.rs#L32-L55
 
+### F#
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/FSharp/Program.fs#L38-L50
+
+### C#
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/CSharp/Program.cs#L28-L40
+
+### C++
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Cpp/main.cpp#L49-L70
+
+### C
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/C/main.c#L46-L68
+
+### Kotlin
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Kotlin/src/Main.kt#L21-L53
+
+### Go
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Go/main.go#L67-L92
+
 ## 2. Training
 
 For training and verifying our implementations we will use two datasets.
