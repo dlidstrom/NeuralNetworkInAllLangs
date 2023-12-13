@@ -12,7 +12,6 @@ var current uint32 = 1
 func rand() float64 {
 	current = current * A % P
 	var result float64 = float64(current) / float64(P)
-	fmt.Printf("%.6f\n", result)
 	return result
 }
 
@@ -66,7 +65,6 @@ func main() {
 	}
 
 	trainer := NewTrainer(2, 2, 6, rand)
-	trainer.network.Print()
 	ITERS := 4000
 	lr := 1.0
 	for i := 0; i < ITERS; i++ {
