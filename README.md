@@ -55,12 +55,13 @@ background.
 
 ## 2. Usage
 
-These usage examples are taken directly from our test implementations.
-The general flow is to prepare a dataset, create a trainer which contains
-an empty neural network, and then train the network until a desired prediction
-accuracy is achived. All of these examples output the final predictions
-to the console. For any larger dataset you will need to compute the prediction accuracy. One way to do this is to compute the percentage of
-correct predictions and the average "confidence" of the predictions.
+These usage examples are taken directly from our test implementations. The
+general flow is to prepare a dataset, create a trainer which contains an empty
+neural network, and then train the network until a desired prediction accuracy
+is achived. All of these examples output the final predictions to the console.
+For any larger dataset you will need to compute the prediction accuracy. One way
+to do this is to compute the percentage of correct predictions and the average
+"confidence" of the predictions.
 
 <details>
 <summary>Computing prediction score and confidences</summary>
