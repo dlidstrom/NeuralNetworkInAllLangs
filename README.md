@@ -57,35 +57,36 @@ background.
 These usage examples are taken directly from our test implementations.
 The general flow is to prepare a dataset, create a trainer which contains
 an empty neural network, and then train the network until a desired prediction
-accuracy is achived.
+accuracy is achived. All of these examples output the final predictions
+to the console. For any larger dataset you will need to compute the prediction accuracy.
 
 ### Rust
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Rust/src/main.rs#L32-L55
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Rust/src/main.rs#L32-L73
 
 ### F#
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/FSharp/Program.fs#L38-L50
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/FSharp/Program.fs#L38-L66
 
 ### C#
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/CSharp/Program.cs#L28-L40
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/CSharp/Program.cs#L28-L58
 
 ### C++
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Cpp/main.cpp#L49-L70
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Cpp/main.cpp#L49-L101
 
 ### C
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/C/main.c#L46-L68
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/C/main.c#L46-L87
 
 ### Kotlin
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Kotlin/src/Main.kt#L21-L53
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Kotlin/src/Main.kt#L21-L60
 
 ### Go
 
-https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Go/main.go#L67-L92
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Go/main.go#L67-L110
 
 ## 2. Training
 
