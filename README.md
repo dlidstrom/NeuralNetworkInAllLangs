@@ -13,23 +13,24 @@
 [![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
 
 - [1. Introduction](#1-introduction)
-- [2. Training](#2-training)
-  - [2.1. Logical Functions](#21-logical-functions)
-    - [2.1.1. Lithmus Test](#211-lithmus-test)
-  - [2.2. Hand Written Digits](#22-hand-written-digits)
-- [3. Learning](#3-learning)
-- [4. Implementation Goals](#4-implementation-goals)
-  - [4.1. Simple Random Number Generator](#41-simple-random-number-generator)
-  - [4.2. License](#42-license)
-  - [4.3. Implementations](#43-implementations)
-    - [4.3.1. Sample Output](#431-sample-output)
-- [5. Reference Implementation](#5-reference-implementation)
-  - [5.1. Inputs and Randomized Starting Weights](#51-inputs-and-randomized-starting-weights)
-  - [5.2. Forward Propagation](#52-forward-propagation)
-  - [5.3. Backpropagation](#53-backpropagation)
-  - [5.4. Weight Updates](#54-weight-updates)
-- [6. Using this in your own solution](#6-using-this-in-your-own-solution)
-- [7. References](#7-references)
+- [2. Usage](#2-usage)
+- [3. Training](#3-training)
+  - [3.1. Logical Functions](#31-logical-functions)
+    - [3.1.1. Lithmus Test](#311-lithmus-test)
+  - [3.2. Hand Written Digits](#32-hand-written-digits)
+- [4. Learning](#4-learning)
+- [5. Implementation Goals](#5-implementation-goals)
+  - [5.1. Simple Random Number Generator](#51-simple-random-number-generator)
+  - [5.2. License](#52-license)
+  - [5.3. Implementations](#53-implementations)
+    - [5.3.1. Sample Output](#531-sample-output)
+- [6. Reference Implementation](#6-reference-implementation)
+  - [6.1. Inputs and Randomized Starting Weights](#61-inputs-and-randomized-starting-weights)
+  - [6.2. Forward Propagation](#62-forward-propagation)
+  - [6.3. Backpropagation](#63-backpropagation)
+  - [6.4. Weight Updates](#64-weight-updates)
+- [7. Using this in your own solution](#7-using-this-in-your-own-solution)
+- [8. References](#8-references)
 
 ## 1. Introduction
 
@@ -52,47 +53,60 @@ prefer to focus on the code itself and will happily copy a solution from one
 programming language to another without worrying about the theoretical
 background.
 
-## Usage
+## 2. Usage
 
 These usage examples are taken directly from our test implementations.
 The general flow is to prepare a dataset, create a trainer which contains
 an empty neural network, and then train the network until a desired prediction
 accuracy is achived. All of these examples output the final predictions
-to the console. For any larger dataset you will need to compute the prediction accuracy.
+to the console. For any larger dataset you will need to compute the prediction accuracy. One way to do this is to compute the percentage of
+correct predictions and the average "confidence" of the predictions.
 
-### Rust
+<details>
+<summary>Computing prediction score and confidences</summary>
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/CSharp/Program.cs#L92-L104
+</details>
 
+<details>
+<summary>Rust</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Rust/src/main.rs#L32-L73
+</details>
 
-### F#
-
+<details>
+<summary>F#</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/FSharp/Program.fs#L38-L66
+</details>
 
-### C#
-
+<details>
+<summary>C#</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/CSharp/Program.cs#L28-L58
+</details>
 
-### C++
-
+<details>
+<summary>C++</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Cpp/main.cpp#L49-L101
+</details>
 
-### C
-
+<details>
+<summary>C</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/C/main.c#L46-L87
+</details>
 
-### Kotlin
-
+<details>
+<summary>Kotlin</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Kotlin/src/Main.kt#L21-L60
+</details>
 
-### Go
-
+<details>
+<summary>Go</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Go/main.go#L67-L110
+</details>
 
-## 2. Training
+## 3. Training
 
 For training and verifying our implementations we will use two datasets.
 
-### 2.1. Logical Functions
+### 3.1. Logical Functions
 
 The first is simple and will be these logical functions: xor, xnor, or, nor,
 and, and nand. This truth table represents the values that the network will
@@ -119,7 +133,7 @@ neurons. Such a network consists of a total of 24 weights:
 
 > 💯 We expect each implementation to learn exactly the same network weights!
 
-#### 2.1.1. Lithmus Test
+#### 3.1.1. Lithmus Test
 
 The logical functions example can be used as a "lithmus test" of neural network
 implementations. A proper implementation will be able to learn the 6 functions
@@ -129,7 +143,7 @@ nodes to learn successfully (if at all). A larger network means more
 mathematical operations so keep this in mind when you evaluate other
 implementations. You don't want to waste cpu cycles unnecessarily.
 
-### 2.2. Hand Written Digits
+### 3.2. Hand Written Digits
 
 The second dataset consists of thousands of hand written digits. This is
 actually also a "toy" dataset but training a network to recognize all digits
@@ -152,7 +166,7 @@ the handwritten digit:
 
 Parsing this dataset needs to be implemented for each language.
 
-## 3. Learning
+## 4. Learning
 
 Our code will perform backpropagation to learn the weights. We update
 the weights after each input. This is called stochastic learning, as
@@ -160,7 +174,7 @@ opposed to batch learning where multiple inputs are presented before
 updating weights. Stochastic learning is generally preferred [2]. Note
 that inputs need to be shuffled for effective learning.
 
-## 4. Implementation Goals
+## 5. Implementation Goals
 
 One of our goals is to have as few or no dependencies. These implementations
 should be easy to integrate and that requires dependency-free code. Another goal
@@ -182,7 +196,7 @@ We strive for:
 - simple tests that verify our implementations and secure them for the future
 - having fun exploring neural networks!
 
-### 4.1. Simple Random Number Generator
+### 5.1. Simple Random Number Generator
 
 Now, a note about random number generation. Training a neural network requires
 that the initial weights are randomly assigned. We will specify a simple random
@@ -228,7 +242,7 @@ The first few random numbers are:
 > The code samples all contain an extension point where you can plug in your own
 > implementation, should you wish to do so (or just hardcode your choice!).
 
-### 4.2. License
+### 5.2. License
 
 All code *in this repository* is licensed under MIT license.
 This is a **permissive** license and you can use this code in your
@@ -242,7 +256,7 @@ then you must also license your implementation with MIT license.
 > All code in this repo must be licensed under the permissive MIT license.
 > Please add license header to every source file. No GPL allowed!
 
-### 4.3. Implementations
+### 5.3. Implementations
 
 This is the current status of the implementations available. We follow a maturity model based on these criteria:
 
@@ -266,7 +280,7 @@ This is the current status of the implementations available. We follow a maturit
 > Note! The Python implementation is only here as a reference. If you are using Python you already
 > have access to all ai tools and libraries you need.
 
-#### 4.3.1. Sample Output
+#### 5.3.1. Sample Output
 
 Digit recognition is done using only 14 hidden neurons, 10 learning epochs (an
 epoch is a run through the entire dataset), and a learning rate of 0.5. Using
@@ -322,7 +336,7 @@ Prediction (output from network for the above input):
 
 Looks good, doesn't it?
 
-## 5. Reference Implementation
+## 6. Reference Implementation
 
 For reference we have [a Python implementation](./Python/Xor.py) which uses NumPy,
 and should be fairly easy to understand. Why Python? Because Python
@@ -338,7 +352,7 @@ values to verify your own calculations. The example is the logical functions
 shown earlier with the inputs being both `1`, i.e. `1 1`. We will use 3 hidden
 neurons and 6 outputs (xor, xnor, and, nand, or, nor).
 
-### 5.1. Inputs and Randomized Starting Weights
+### 6.1. Inputs and Randomized Starting Weights
 
 These are the initial values for the input layer and the hidden layer. $w$ is
 the weights, $b$ is the biases. Note that we are showing randomized biases here
@@ -371,7 +385,7 @@ b_{output} & = &
 \end{bmatrix} \\
 \end{array}$$
 
-### 5.2. Forward Propagation
+### 6.2. Forward Propagation
 
 First we show forward propagation for the hidden layer.
 
@@ -432,7 +446,7 @@ y_{output} & = & \begin{bmatrix}
 \end{bmatrix} \\
 \end{array}$$
 
-### 5.3. Backpropagation
+### 6.3. Backpropagation
 
 Now we have calculated output. These are off according to the expected output
 and the purpose of the next step, backpropagation, is to correct the weights for
@@ -502,7 +516,7 @@ $$\begin{array}{rcl}
 \end{bmatrix}
 \end{array}$$
 
-### 5.4. Weight Updates
+### 6.4. Weight Updates
 
 Finally we can apply weight updates. $\alpha$ is the learning rate which here
 will be $1$. First update weights and biases for the output layer.
@@ -537,7 +551,7 @@ b_{hidden} & = &
 \end{bmatrix}
 \end{array}$$
 
-## 6. Using this in your own solution
+## 7. Using this in your own solution
 
 If you do use any of these implementations in your own solution, then here
 are some things to keep in mind for good results:
@@ -549,7 +563,7 @@ are some things to keep in mind for good results:
 - you may try "annealing" the learning rate, meaning start high (0.5) and slowly
   decrease over the epochs
 
-## 7. References
+## 8. References
 
 [1] <http://neuralnetworksanddeeplearning.com/> <br>
 [2] <https://leon.bottou.org/publications/pdf/tricks-1998.pdf> <br>
