@@ -52,6 +52,17 @@ prefer to focus on the code itself and will happily copy a solution from one
 programming language to another without worrying about the theoretical
 background.
 
+## Usage
+
+These usage examples are taken directly from our test implementations.
+The general flow is to prepare a dataset, create a trainer which contains
+an empty neural network, and then train the network until a desired prediction
+accuracy is achived.
+
+### Rust
+
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Rust/src/main.rs#L32-L55
+
 ## 2. Training
 
 For training and verifying our implementations we will use two datasets.
@@ -217,7 +228,7 @@ This is the current status of the implementations available. We follow a maturit
 - Level 4: implement a unit test to verify level 3 and make the code future safe
 
 | Language | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Contributor |
-|-|-|-|-|-|-|-|
+|---|:---:|:---:|:---:|:---:|:---:|---|
 | C# | ⭐️ | ⭐️ | ⭐️ | ⭐️ | ⭐️ | [@dlidstrom](https://github.com/dlidstrom) |
 | Rust | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | F# | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
