@@ -73,12 +73,12 @@ func main() {
 	}
 
 	fmt.Printf("Result after %d iterations\n", ITERS)
-	fmt.Println("        XOR   XNOR    OR   AND   NOR   NAND")
+	fmt.Println("        XOR  XNOR    OR   AND   NOR  NAND")
 	for i := 0; i < len(allData); i++ {
 		data := allData[i]
 		pred := trainer.network.Predict(data.input)
 		fmt.Printf(
-			"%.0f,%.0f = %.3f  %.3f %.3f %.3f %.3f  %.3f\n",
+			"%.0f,%.0f = %.3f %.3f %.3f %.3f %.3f %.3f\n",
 			data.input[0],
 			data.input[1],
 			pred[0],
