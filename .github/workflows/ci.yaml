@@ -92,6 +92,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build
+    - name: Setup
+      run: |
+        sudo npm install -g bats
+    - name: Tests
       working-directory: Go
       run: bats test.bats

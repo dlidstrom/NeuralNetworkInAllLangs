@@ -74,6 +74,7 @@ func main() {
 		trainer.Train(dataItem.input, dataItem.output, lr)
 	}
 
+	fmt.Printf("Result after %d iterations\n", ITERS)
 	fmt.Println("        XOR   XNOR    OR   AND   NOR   NAND")
 	for i := 0; i < len(allData); i++ {
 		data := allData[i]
