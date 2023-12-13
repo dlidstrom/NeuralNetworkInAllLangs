@@ -223,8 +223,8 @@ This is the current status of the implementations available. We follow a maturit
 | F# | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C++ | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Go | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Kotlin | ⭐️ | ⭐️ | | | | [@dlidstrom](https://github.com/dlidstrom) |
-| Go | ⭐️ | ⭐️ | | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Python | ⭐️ | | | | | [@dlidstrom](https://github.com/dlidstrom) |
 
 > Note! The Python implementation is only here as a reference. If you are using Python you already
