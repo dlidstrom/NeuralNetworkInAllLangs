@@ -31,6 +31,7 @@
   - [6.4. Weight Updates](#64-weight-updates)
 - [7. Using this in your own solution](#7-using-this-in-your-own-solution)
 - [8. References](#8-references)
+- [9. Stargazers over time](#9-stargazers-over-time)
 
 ## 1. Introduction
 
@@ -569,3 +570,7 @@ are some things to keep in mind for good results:
 [1] <http://neuralnetworksanddeeplearning.com/> <br>
 [2] <https://leon.bottou.org/publications/pdf/tricks-1998.pdf> <br>
 [3] <https://cs231n.github.io/neural-networks-2/>
+
+## 9. Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/dlidstrom/NeuralNetworkInAllLangs.svg?variant=adaptive)](https://starchart.cc/dlidstrom/NeuralNetworkInAllLangs)
