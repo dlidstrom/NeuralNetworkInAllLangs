@@ -21,6 +21,32 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdlib.h>
 #include <math.h>
 
+/**
+ * TODO
+ * - initialize weights column major order
+ * - implement multiplication using
+    bli_dgemv( BLIS_NO_TRANSPOSE, BLIS_NO_CONJUGATE,
+           m, n, &alpha, a, rs, cs, x, 1, &beta, y, 1 );
+    m and n are as usual
+    alpha and beta are scaling factors of x and y, respectively
+
+    void bli_?gemv
+     (
+       trans_t transa,
+       conj_t  conjx,
+       dim_t   m,
+       dim_t   n,
+       ctype*  alpha,
+       ctype*  a, inc_t rsa, inc_t csa,
+       ctype*  x, inc_t incx,
+       ctype*  beta,
+       ctype*  y, inc_t incy
+     );
+
+     y := beta * y + alpha * transa(A) * conjx(x)
+     where transa(A) is an m x n matrix, and y and x are vectors.
+ */
+
 static double sigmoid(double f) { return 1.0 / (1.0 + exp(-f)); }
 static double sigmoid_prim(double f) { return f * (1.0 - f); }
 
