@@ -12,6 +12,12 @@
 
 [![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
 
+🙌 Seeking assistance! I'm looking for help to add support for missing languages.
+If you can contribute, I'll gladly accept a PR and give proper credit 💫.
+It's simpler than you might expect. Just take a look at one of the existing
+implementations—it's mostly a few for loops. No need to worry about adding tests;
+I can help with that part.
+
 - [1. Introduction](#1-introduction)
 - [2. Usage](#2-usage)
 - [3. Training](#3-training)
