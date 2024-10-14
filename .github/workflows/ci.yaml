@@ -98,3 +98,17 @@ jobs:
     - name: Tests
       working-directory: Go
       run: bats test.bats
+
+  java:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup
+      run: |
+        sudo npm install -g bats
+    - name: Build
+      working-directory: Java
+      run: make jar
+    - name: Tests
+      working-directory: Java
+      run: bats test.bats
