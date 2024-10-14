@@ -1,16 +1,22 @@
 # Neural Network in All Languages <!-- omit in toc -->
 
-<img src="https://github.com/dlidstrom/NeuralNetworkInAllLangs/raw/main/doc/networks.png" width="400px">
+<img alt="Brain image" src="https://github.com/dlidstrom/NeuralNetworkInAllLangs/raw/main/doc/networks.png" width="400px">
 
-![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
-![F#](https://img.shields.io/badge/f%23-%23239120.svg?style=for-the-badge&logo=f-sharp)
-![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
-![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
-![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-%23000000.svg?e&logo=rust&logoColor=white)
+![F#](https://img.shields.io/badge/F%23-378BBA?logo=fsharp&logoColor=fff)
+![C#](https://custom-icon-badges.demolab.com/badge/C%23-%23239120.svg?logo=cshrp&logoColor=white)
+![C++](https://img.shields.io/badge/C++-%2300599C.svg?logo=c%2B%2B&logoColor=white)
+![C](https://img.shields.io/badge/C-00599C?logo=c&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-%237F52FF.svg?logo=kotlin&logoColor=white)
+![Go](https://img.shields.io/badge/Go-%2300ADD8.svg?&logo=go&logoColor=white)
+![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)
 
 [![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
+
+🔥 Latest news
+
+- added Java implementation ([@dlidstrom](https://github.com/dlidstrom))
+- fixed C compilation in Linux (thanks! [@LordMhri](https://github.com/LordMhri))
 
 🙌 Seeking assistance! I'm looking for help to add support for missing languages.
 If you can contribute, I'll gladly accept a PR and give proper credit 💫.
@@ -108,6 +114,11 @@ https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e77
 <details>
 <summary>Go</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e777a2159f931a7dca8c9/Go/main.go#L67-L110
+</details>
+
+<details>
+<summary>Java</summary>
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/572f8794ebf95e6a988c0e3aa95ae94438278331/Java/src/Main.java#L29-L54
 </details>
 
 ## 3. Training
@@ -243,9 +254,9 @@ The first few random numbers are:
 ```
 
 > This was chosen to avoid any complexity! There are widely used algorithms for
-> better random number generation but it isn't important in this case. We simply
+> better random number generation but *it isn't important in this case*. We simply
 > need some starting values and they don't have to be very random as long as
-> they are all different. We might've just used the current microseconds!
+> they are all different.
 >
 > The code samples all contain an extension point where you can plug in your own
 > implementation, should you wish to do so (or just hardcode your choice!).
@@ -282,6 +293,7 @@ This is the current status of the implementations available. We follow a maturit
 | C++ | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | C | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Go | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Java | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Kotlin | ⭐️ | ⭐️ | | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Python | ⭐️ | | | | | [@dlidstrom](https://github.com/dlidstrom) |
 

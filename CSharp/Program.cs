@@ -23,7 +23,7 @@ using Neural;
 using static Neural.Logical;
 
 Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-if (args[0] == "--logical")
+if (args.FirstOrDefault() == "--logical")
 {
     var trainingData = Enumerable.Range(0, 2)
         .SelectMany(x => Enumerable.Range(0, 2), (l, r) => (l, r))
@@ -66,7 +66,7 @@ if (args[0] == "--logical")
     };
     Console.WriteLine($"network: {networkVals.ToJson()}");
 }
-else if (args[0] == "--semeion")
+else if (args.FirstOrDefault() == "--semeion")
 {
     // --semeion <file> hiddens epochs lr
     const int inputCount = 16  * 16;
@@ -127,6 +127,9 @@ else if (args[0] == "--semeion")
 
         Console.WriteLine();
     }
+}
+else {
+  Console.WriteLine("Specify --logical or --semeion <file>");
 }
 
 namespace Neural
