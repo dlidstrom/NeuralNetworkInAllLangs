@@ -10,13 +10,17 @@
 ![Kotlin](https://img.shields.io/badge/Kotlin-%237F52FF.svg?logo=kotlin&logoColor=white)
 ![Go](https://img.shields.io/badge/Go-%2300ADD8.svg?&logo=go&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)
+![Zig](https://img.shields.io/badge/Zig-%23F7A41D.svg?logo=zig&logoColor=white)
 
 [![Run Tests](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml/badge.svg)](https://github.com/dlidstrom/NeuralNetworkInAllLangs/actions/workflows/ci.yaml)
 
 🔥 Latest news
 
+- added Zig implementation (thanks [@Rojuinex](https://github.com/Rojuinex)!)
 - added Java implementation ([@dlidstrom](https://github.com/dlidstrom))
-- fixed C compilation in Linux (thanks! [@LordMhri](https://github.com/LordMhri))
+- fixed C compilation in Linux (thanks [@LordMhri](https://github.com/LordMhri)!)
+
+See [Language Implementations](#53-language-implementations) for more detail.
 
 🙌 Seeking assistance! I'm looking for help to add support for missing languages.
 If you can contribute, I'll gladly accept a PR and give proper credit 💫.
@@ -34,7 +38,7 @@ I can help with that part.
 - [5. Implementation Goals](#5-implementation-goals)
   - [5.1. Simple Random Number Generator](#51-simple-random-number-generator)
   - [5.2. License](#52-license)
-  - [5.3. Implementations](#53-implementations)
+  - [5.3. Language Implementations](#53-language-implementations)
     - [5.3.1. Sample Output](#531-sample-output)
 - [6. Reference Implementation](#6-reference-implementation)
   - [6.1. Inputs and Randomized Starting Weights](#61-inputs-and-randomized-starting-weights)
@@ -119,6 +123,11 @@ https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/4c9c8176a9936320af3e77
 <details>
 <summary>Java</summary>
 https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/572f8794ebf95e6a988c0e3aa95ae94438278331/Java/src/Main.java#L29-L54
+</details>
+
+<details>
+<summary>Zig</summary>
+https://github.com/dlidstrom/NeuralNetworkInAllLangs/blob/9de376aad054a39b8fe90bfe780f207098418391/Zig/src/main.zig#L48-L101
 </details>
 
 ## 3. Training
@@ -275,7 +284,7 @@ then you must also license your implementation with MIT license.
 > All code in this repo must be licensed under the permissive MIT license.
 > Please add license header to every source file. No GPL allowed!
 
-### 5.3. Implementations
+### 5.3. Language Implementations
 
 This is the current status of the implementations available. We follow a maturity model based on these criteria:
 
@@ -294,6 +303,7 @@ This is the current status of the implementations available. We follow a maturit
 | C | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Go | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Java | ⭐️ | ⭐️ | ⭐️ | | | [@dlidstrom](https://github.com/dlidstrom) |
+| Zig | ⭐️ | ⭐️ | ⭐️ | | | [@Rojuinex](https://github.com/Rojuinex) |
 | Kotlin | ⭐️ | ⭐️ | | | | [@dlidstrom](https://github.com/dlidstrom) |
 | Python | ⭐️ | | | | | [@dlidstrom](https://github.com/dlidstrom) |
 
