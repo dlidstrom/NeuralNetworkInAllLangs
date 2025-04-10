@@ -496,12 +496,12 @@ y & = & \begin{bmatrix}
 \nabla_{output} & = & error'(y, y_{output}) \cdot sigmoid'(y_{output}) \\
 \nabla_{output} & = & (y_{output} - y) \cdot sigmoid'(y_{output}) \\
 & & \text{note that these are performed element-wise} \\
-\nabla_{output} & = & (\begin{bmatrix}
+\nabla_{output} & = & \begin{bmatrix}
 0.788-0 & 0.753-1 & 0.821-1 & 0.878-1 & 0.773-0 & 0.711-0
 \end{bmatrix} \\
-& & \cdot (\begin{bmatrix}
+& & \cdot \begin{bmatrix}
 0.788 & 0.753 & 0.821 & 0.878 & 0.773 & 0.711
-\end{bmatrix}) \\
+\end{bmatrix} \\
 & & \cdot \begin{bmatrix}
 1-0.788 & 1-0.753 & 1-0.821 & 1-0.878 & 1-0.773 & 1-0.711
 \end{bmatrix} \\
