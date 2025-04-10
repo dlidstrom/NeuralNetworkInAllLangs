@@ -112,3 +112,20 @@ jobs:
     - name: Tests
       working-directory: Java
       run: bats test.bats
+
+  zig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup
+        run: |
+          sudo npm install -g bats
+
+      - name: Setup Zig
+        uses: mlugg/setup-zig@v1
+        with:
+          version: 0.14.0
+
+      - name: Tests
+        working-directory: Zig
+        run: bats test.bats
