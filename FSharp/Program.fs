@@ -19,6 +19,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 open Neural
 
+// ReLU-friendly bump function
+let bumpFunction x =
+    max 0.0 (x - 1.0) - max 0.0 (x - 3.0)
+
+// Generate training data: 101 points from 0.0 to 5.0
+let trainingData =
+    [|
+        for i in 0 .. 100 ->
+            let x = float i / 20.0  // [0.0 .. 5.0] in 0.05 steps
+            [| x |], [| bumpFunction x |]
+    |]
+
 let randFloat =
   let P = 2147483647u
   let A = 16807u;
@@ -28,47 +40,34 @@ let randFloat =
     let result = float current / float P
     result
   inner
-let xor a b = a ^^^ b
-let orf (a: int) b = a ||| b
-let andf (a: int) b = a &&& b
-let xnor a b = 1 - xor a b
-let nand a b = 1 - andf a b
-let nor a b = 1 - orf a b
 
-let trainingData = [|
-  for i = 0 to 1 do
-    for j = 0 to 1 do
-      [| float i; j |],
-      [| xor i j |> float; xnor i j; orf i j; andf i j; nor i j; nand i j |]
-|]
+let trainer = Trainer(1, 4, 1, Activations.relu, randFloat)
+let lr = 0.01
+let ITERS = 5000
+for i in 0 .. ITERS - 1 do
+    let x, y = trainingData[i % trainingData.Length]
+    trainer.Train(x, y, lr)
 
-let trainer = Trainer(2, 2, 6, Activations.sigmoid, randFloat)
-let lr = 1.0
-let ITERS = 4000
-for e = 0 to ITERS - 1 do
-  let input, y = trainingData[e % trainingData.Length]
-  trainer.Train(input, y, lr)
+// Predict and print results
+let net = trainer.Network
 
-let network = trainer.Network
-printfn "Result after %d iterations" ITERS
-printfn "        XOR   XNOR    OR   AND   NOR   NAND"
-for i, _ in trainingData do
-  let pred = network.Predict(i)
-  printfn
-    "%.0f,%.0f = %.3f  %.3f %.3f %.3f %.3f  %.3f"
-    i[0]
-    i[1]
-    pred[0]
-    pred[1]
-    pred[2]
-    pred[3]
-    pred[4]
-    pred[5]
+let y_hidden = Array.zeroCreate 4
+let y_output = Array.zeroCreate 1
+let z_hidden = Array.zeroCreate 4
+let z_output = Array.zeroCreate 1
 
-let networkVals = {|
-  WeightsHidden = network.WeightsHidden
-  BiasesHidden = network.BiasesHidden
-  WeightsOutput = network.WeightsOutput
-  BiasesOutput = network.BiasesOutput
-|}
-printfn $"network: %A{networkVals}"
+printfn "x     target    predicted    z_output  hidden activations"
+[0.0 .. 0.25 .. 5.0]
+|> List.iter (fun x ->
+    net.Predict([| x |], z_hidden, z_output, y_hidden, y_output) |> ignore
+    let target = bumpFunction x
+    let output = y_output[0]
+    printfn "%.2f   %.4f    %.4f   %A  %A" x target output z_output y_hidden
+)
+
+printfn "x     target    predicted"
+[0.0 .. 0.25 .. 5.0]
+|> List.iter (fun x ->
+    let pred = net.Predict([| x |])
+    let target = bumpFunction x
+    printfn "%.2f   %.4f    %.4f" x target pred[0])
