@@ -1,6 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":dependencyDashboard"
+  ],
+  "packageRules": [
+    {
+      "description": "Automerge updates",
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "automerge": true
+    }
   ]
 }
