@@ -42,7 +42,7 @@ let trainingData = [|
       [| xor i j |> float; xnor i j; orf i j; andf i j; nor i j; nand i j |]
 |]
 
-let trainer = Trainer(2, 2, 6, randFloat)
+let trainer = Trainer(2, 2, 6, Activations.sigmoid, randFloat)
 let lr = 1.0
 let ITERS = 4000
 for e = 0 to ITERS - 1 do
