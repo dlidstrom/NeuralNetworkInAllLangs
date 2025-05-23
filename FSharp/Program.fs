@@ -28,47 +28,37 @@ let randFloat =
     let result = float current / float P
     result
   inner
-let xor a b = a ^^^ b
-let orf (a: int) b = a ||| b
-let andf (a: int) b = a &&& b
-let xnor a b = 1 - xor a b
-let nand a b = 1 - andf a b
-let nor a b = 1 - orf a b
+let nInputs = 26             // e.g. 13 card ranks: one-hot or count-based
+let nHidden = 20
+let nPolicyOutputs = 13       // e.g. 5 possible legal moves
+let learningRate = 1.0
 
-let trainingData = [|
-  for i = 0 to 1 do
-    for j = 0 to 1 do
-      [| float i; j |],
-      [| xor i j |> float; xnor i j; orf i j; andf i j; nor i j; nand i j |]
-|]
+let trainingData =
+  [|
+    for _ in 1..100 ->
+      // Random binary input vector (e.g., presence of card ranks)
+      let input = Array.init nInputs (fun _ -> if randFloat() > 0.5 then 1.0 else 0.0)
 
-let trainer = Trainer(2, 2, 6, randFloat)
-let lr = 1.0
-let ITERS = 4000
+      // Simulate a one-hot policy label (e.g., "move 2 is the best")
+      let bestMove = int (randFloat() * float nPolicyOutputs)
+      let policy = Array.init nPolicyOutputs (fun i -> if i = bestMove then 1.0 else 0.0)
+
+      // Simulate win probability target (e.g., from self-play outcome)
+      let value = if randFloat() > 0.5 then 1.0 else 0.0
+
+      input, Array.concat [policy;  [| value |] ]
+  |]
+let trainer = Trainer(nInputs, nHidden, nPolicyOutputs + 1, randFloat)
+let lr = 0.1
+let ITERS = 40000
 for e = 0 to ITERS - 1 do
   let input, y = trainingData[e % trainingData.Length]
   trainer.Train(input, y, lr)
 
 let network = trainer.Network
-printfn "Result after %d iterations" ITERS
-printfn "        XOR   XNOR    OR   AND   NOR   NAND"
-for i, _ in trainingData do
-  let pred = network.Predict(i)
-  printfn
-    "%.0f,%.0f = %.3f  %.3f %.3f %.3f %.3f  %.3f"
-    i[0]
-    i[1]
-    pred[0]
-    pred[1]
-    pred[2]
-    pred[3]
-    pred[4]
-    pred[5]
-
-let networkVals = {|
-  WeightsHidden = network.WeightsHidden
-  BiasesHidden = network.BiasesHidden
-  WeightsOutput = network.WeightsOutput
-  BiasesOutput = network.BiasesOutput
-|}
-printfn $"network: %A{networkVals}"
+let input, output = trainingData[1]
+let policyOut = network.Predict input
+printfn "\nTest Prediction:"
+printfn "Input    : %A" input
+printfn "Expected : %s" (output |> Array.map (sprintf "%0.2f") |> String.concat ", ")
+printfn "Predicted: %s" (policyOut |> Array.map (sprintf "%0.2f") |> String.concat ", ")

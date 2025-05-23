@@ -84,7 +84,7 @@ type Trainer(network, n_inputs, n_hidden, n_outputs) =
   member _.Train (input: Vector, y: Vector, lr) =
     network.Predict(input, y_hidden, y_output) |> ignore<Vector>
     for c = 0 to n_outputs - 1 do
-      grad_output[c] <- (y_output[c] - y[c]) * sigmoid' y_output[c]
+      grad_output[c] <- (y_output[c] - y[c]) //* sigmoid' y_output[c]
 
     for r = 0 to n_hidden - 1 do
       let mutable sum = 0.
