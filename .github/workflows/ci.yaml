@@ -10,7 +10,7 @@ jobs:
   fsharp:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         sudo npm install -g bats
@@ -27,7 +27,7 @@ jobs:
   rust:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         sudo npm install -g bats
@@ -39,7 +39,7 @@ jobs:
   csharp:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         sudo npm install -g bats
@@ -59,7 +59,7 @@ jobs:
   cpp:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         sudo npm install -g bats
@@ -71,7 +71,7 @@ jobs:
   c:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         brew install bats-core
@@ -83,7 +83,7 @@ jobs:
   kotlin:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Build
       working-directory: Kotlin
       run: make && make run
@@ -91,7 +91,7 @@ jobs:
   go:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         sudo npm install -g bats
@@ -102,7 +102,7 @@ jobs:
   java:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup
       run: |
         sudo npm install -g bats
@@ -116,7 +116,7 @@ jobs:
   zig:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Setup
         run: |
           sudo npm install -g bats
