@@ -15,8 +15,14 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+UNAME := $(shell uname)
+
 CC = clang
+ifeq ($(UNAME), Linux)
 CC_FLAGS = -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -lm
+else
+CC_FLAGS = -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow
+endif
 
 # Final binary
 BIN = cmain
@@ -25,7 +31,7 @@ BIN = cmain
 BUILD_DIR = ./build
 
 # List of all .c source files.
-CCS = main.c $(wildcard *.c)
+CCS = $(wildcard *.c)
 
 # All .o files go to build dir.
 OBJ = $(CCS:%.c=$(BUILD_DIR)/%.o)
