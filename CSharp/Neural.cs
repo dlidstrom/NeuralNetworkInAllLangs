@@ -86,7 +86,7 @@ public record Trainer(
     public static Trainer Create(Network network, int hiddenCount, int outputCount)
     {
         double[] hidden = new double[hiddenCount];
-        double[] output = new double[hiddenCount];
+        double[] output = new double[outputCount];
         double[] gradHidden = new double[hiddenCount];
         double[] gradOutput = new double[outputCount];
         return new Trainer(network, hidden, output, gradHidden, gradOutput);

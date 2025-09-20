@@ -61,7 +61,7 @@ Vector Network::Predict(const Vector& input, Vector& hidden, Vector& output) con
 
 Trainer Trainer::Create(Neural::Network&& network, size_t hiddenCount, size_t outputCount) {
     Vector hidden = Vector(hiddenCount);
-    Vector output = Vector(hiddenCount);
+    Vector output = Vector(outputCount);
     Vector gradHidden = Vector(hiddenCount);
     Vector gradOutput = Vector(outputCount);
     return Trainer {
