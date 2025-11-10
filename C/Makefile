@@ -16,7 +16,13 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 CC = clang
-CC_FLAGS = -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow -lm
+CC_FLAGS = -Wfatal-errors -Wall -Wextra -Wpedantic -Wconversion -Wshadow
+
+# Detect OS and add -lm on Linux
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+    LDFLAGS = -lm
+endif
 
 # Final binary
 BIN = cmain
@@ -25,7 +31,7 @@ BIN = cmain
 BUILD_DIR = ./build
 
 # List of all .c source files.
-CCS = main.c $(wildcard *.c)
+CCS = $(wildcard *.c)
 
 # All .o files go to build dir.
 OBJ = $(CCS:%.c=$(BUILD_DIR)/%.o)
@@ -39,7 +45,7 @@ $(BIN) : $(BUILD_DIR)/$(BIN)
 # Actual target of the binary - depends on all .o files.
 $(BUILD_DIR)/$(BIN) : $(OBJ)
 	mkdir -p $(@D)
-	$(CC) $(CC_FLAGS) $^ -o $@
+	$(CC) $(CC_FLAGS) $^ -o $@ $(LDFLAGS)
 
 # Include all .d files
 -include $(DEP)
