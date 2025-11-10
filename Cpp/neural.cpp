@@ -30,13 +30,14 @@ double sigmoid_prim(double f) { return f * (1.0 - f); }
 /* network */
 
 Vector Network::Predict(const Vector &input) const {
-  Vector y_hidden = Vector(hiddenCount);
-  Vector y_output = Vector(outputCount);
-  return Predict(input, y_hidden, y_output);
+  Vector y_hidden(hiddenCount);
+  Vector y_output(outputCount);
+  Predict(input, y_hidden, y_output);
+  return y_output;
 }
 
-Vector Network::Predict(const Vector &input, Vector &hidden,
-                        Vector &output) const {
+void Network::Predict(const Vector &input, Vector &hidden,
+                      Vector &output) const {
   for (std::size_t c = 0; c < hiddenCount; c++) {
     double sum = 0.0;
     for (size_t r = 0; r < input.size(); r++) {
@@ -54,43 +55,42 @@ Vector Network::Predict(const Vector &input, Vector &hidden,
 
     output[c] = sigmoid(sum + biasesOutput[c]);
   }
-
-  return output;
 }
 
 /* trainer */
 
-Trainer Trainer::Create(Neural::Network &&network, size_t hiddenCount,
-                        size_t outputCount) {
-  Vector hidden = Vector(hiddenCount);
-  Vector output = Vector(outputCount);
-  Vector gradHidden = Vector(hiddenCount);
-  Vector gradOutput = Vector(outputCount);
-  return Trainer{.network = network,
-                 .hidden = hidden,
-                 .output = output,
-                 .gradHidden = gradHidden,
-                 .gradOutput = gradOutput};
+Trainer Trainer::Create(Neural::Network network) {
+  Vector hidden(network.hiddenCount);
+  Vector output(network.outputCount);
+  Vector gradHidden(network.hiddenCount);
+  Vector gradOutput(network.outputCount);
+  return Trainer{.network = std::move(network),
+                 .hidden = std::move(hidden),
+                 .output = std::move(output),
+                 .gradHidden = std::move(gradHidden),
+                 .gradOutput = std::move(gradOutput)};
 }
 
 Trainer Trainer::Create(size_t inputCount, size_t hiddenCount,
-                        size_t outputCount, std::function<double()> rand) {
-  Vector hidden = Vector(hiddenCount);
-  Vector output = Vector(outputCount);
-  Vector gradHidden = Vector(hiddenCount);
-  Vector gradOutput = Vector(outputCount);
-  Vector weightsHidden = Vector();
+                        size_t outputCount, RandFcn rand) {
+  Vector hidden(hiddenCount);
+  Vector output(outputCount);
+  Vector gradHidden(hiddenCount);
+  Vector gradOutput(outputCount);
+  Vector weightsHidden;
+  weightsHidden.reserve(inputCount * hiddenCount);
   for (size_t i = 0; i < inputCount * hiddenCount; i++) {
     weightsHidden.push_back(rand() - 0.5);
   }
 
-  Vector biasesHidden = Vector(hiddenCount);
-  Vector weightsOutput = Vector();
+  Vector biasesHidden(hiddenCount);
+  Vector weightsOutput;
+  weightsOutput.reserve(hiddenCount * outputCount);
   for (size_t i = 0; i < hiddenCount * outputCount; i++) {
     weightsOutput.push_back(rand() - 0.5);
   }
 
-  Vector biasesOutput = Vector(outputCount);
+  Vector biasesOutput(outputCount);
   Neural::Network network = {.inputCount = inputCount,
                              .hiddenCount = hiddenCount,
                              .outputCount = outputCount,
@@ -98,11 +98,11 @@ Trainer Trainer::Create(size_t inputCount, size_t hiddenCount,
                              .biasesHidden = std::move(biasesHidden),
                              .weightsOutput = std::move(weightsOutput),
                              .biasesOutput = std::move(biasesOutput)};
-  return Trainer{.network = network,
-                 .hidden = hidden,
-                 .output = output,
-                 .gradHidden = gradHidden,
-                 .gradOutput = gradOutput};
+  return Trainer{.network = std::move(network),
+                 .hidden = std::move(hidden),
+                 .output = std::move(output),
+                 .gradHidden = std::move(gradHidden),
+                 .gradOutput = std::move(gradOutput)};
 }
 
 void Trainer::Train(const Vector &input, const Vector &y, double lr) {
