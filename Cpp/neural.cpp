@@ -72,7 +72,7 @@ Trainer Trainer::Create(Neural::Network network) {
 }
 
 Trainer Trainer::Create(size_t inputCount, size_t hiddenCount,
-                        size_t outputCount, std::function<double()> rand) {
+                        size_t outputCount, RandFcn rand) {
   Vector hidden(hiddenCount);
   Vector output(outputCount);
   Vector gradHidden(hiddenCount);

@@ -26,6 +26,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 namespace Neural {
 typedef std::vector<double> Vector;
 typedef std::vector<Vector> Matrix;
+typedef std::function<double()> RandFcn;
 struct Network {
   size_t inputCount;
   size_t hiddenCount;
@@ -46,7 +47,7 @@ struct Trainer {
   Vector gradOutput;
   static Trainer Create(Neural::Network network);
   static Trainer Create(size_t inputCount, size_t hiddenCount,
-                        size_t outputCount, std::function<double()> rand);
+                        size_t outputCount, RandFcn rand);
   void Train(const Vector &input, const Vector &output, double lr);
 };
 } // namespace Neural
