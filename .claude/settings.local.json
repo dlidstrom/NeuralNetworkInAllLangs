@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make:*)",
+      "Bash(./connectfour)",
+      "Bash(timeout 60 ./connectfour:*)",
+      "Bash(timeout 120 ./connectfour:*)",
+      "Bash(timeout 180 ./connectfour:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

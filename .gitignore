@@ -1,3 +1,5 @@
 semeion.data
 Java/Main.jar
 Java/out
+*.sln
+*.bin
