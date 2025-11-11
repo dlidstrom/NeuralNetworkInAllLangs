@@ -79,11 +79,13 @@ This will compile all source files and create the `connectfour` executable.
 ## Usage
 
 Run the program:
+
 ```bash
 ./connectfour
 ```
 
 Or use:
+
 ```bash
 make run
 ```
@@ -98,6 +100,7 @@ make run
    - Learning rate: 0.001
 
 The system will:
+
 - Play 20 self-play games per iteration
 - Train on ~400-800 examples per iteration
 - Evaluate against minimax every 2 iterations
@@ -137,6 +140,7 @@ The system will:
 ## Performance Expectations
 
 After training:
+
 - **10 iterations**: Should beat random play
 - **25 iterations**: ~20-30% win rate vs minimax depth 6
 - **50 iterations**: ~40-50% win rate vs minimax depth 6
@@ -145,18 +149,22 @@ After training:
 ## Technical Details
 
 ### State Space Reduction
+
 The mirroring technique reduces the effective state space:
+
 - Without mirroring: ~4.5 � 10^12 possible positions
 - With mirroring: ~2.25 � 10^12 possible positions
 - Normalized perspective: Always from current player's view
 
 ### MCTS Enhancements
+
 - UCB exploration constant: 1.414 (2)
 - Temperature schedule for move selection
 - Visit count-based training targets
 - Value estimation from game outcomes
 
 ### Minimax Configuration
+
 - Default depth: 7 plies
 - Evaluation features:
   - Three-in-a-row: +100 per occurrence
@@ -167,11 +175,13 @@ The mirroring technique reduces the effective state space:
 ## Cleaning
 
 Remove compiled files:
+
 ```bash
 make clean
 ```
 
 Remove trained weights only:
+
 ```bash
 make clean-weights
 ```

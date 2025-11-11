@@ -7,6 +7,8 @@ Copyright 2025 Daniel Lidstrom
 #include "mcts.h"
 #include "minimax.h"
 #include "trainer.h"
+#include "tests.h"
+#include "neural_evaluator.h"
 #include "../Cpp/neural.h"
 #include "../Cpp/neural_io.h"
 #include <iostream>
@@ -87,7 +89,8 @@ void PlayAgainstAI() {
   }
 
   Board board;
-  MCTS mcts(std::move(network), 1.414);
+  auto evaluator = std::make_unique<NeuralEvaluator>(std::move(network));
+  MCTS mcts(std::move(evaluator), 1.414);
 
   std::cout << "\nYou are X, AI is O.\n";
   std::cout << "Enter column number (0-6) to make a move.\n";
@@ -187,7 +190,8 @@ void WatchAIVsMinimax() {
     int move;
 
     if (currentPlayer == nnPlayer) {
-      MCTS mcts(network, 1.414);
+      auto evaluator = std::make_unique<NeuralEvaluator>(network);
+      MCTS mcts(std::move(evaluator), 1.414);
       std::cout << "Running MCTS...\n";
       mcts.SearchSimulations(board, currentPlayer, 400);
       move = mcts.SelectBestMove();
@@ -242,7 +246,33 @@ void EvaluateAI() {
   std::cout << "Win rate: " << (result.WinRate() * 100.0) << "%\n";
 }
 
-int main() {
+void RunTests() {
+  TestRunner runner;
+
+  runner.AddTest("Board Basics", TestBoardBasics);
+  runner.AddTest("Minimax Basics", TestMinimaxBasics);
+  runner.AddTest("MCTS Basics", TestMCTSBasics);
+  runner.AddTest("MCTS Finds Win In One", TestMCTSFindsWinInOne);
+  runner.AddTest("MCTS Blocks Loss In One", TestMCTSBlocksLossInOne);
+  runner.AddTest("MCTS vs Minimax 2-ply (quick)", TestMCTSVsMinimax2Ply);
+  runner.AddTest("Untrained MCTS vs Minimax 2-ply (full)", TestUntrainedMCTSVsMinimax2);
+
+  runner.RunAll();
+
+  if (runner.GetFailureCount() > 0) {
+    std::cout << "\nSome tests failed!\n";
+  } else {
+    std::cout << "\nAll tests passed!\n";
+  }
+}
+
+int main(int argc, char* argv[]) {
+  // Check if running tests
+  if (argc > 1 && std::string(argv[1]) == "test") {
+    RunTests();
+    return 0;
+  }
+
   while (true) {
     DisplayMenu();
 

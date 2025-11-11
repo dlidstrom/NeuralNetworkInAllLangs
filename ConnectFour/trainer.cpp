@@ -4,6 +4,7 @@ Copyright 2025 Daniel Lidstrom
 */
 
 #include "trainer.h"
+#include "neural_evaluator.h"
 #include <iostream>
 #include <algorithm>
 
@@ -37,8 +38,9 @@ std::vector<TrainingExample> Trainer::PlaySelfPlayGame(double /* temperature */)
   int moveCount = 0;
 
   while (!board.IsGameOver()) {
-    // Run MCTS
-    MCTS mcts(neuralTrainer.network, mctsExplorationConstant);
+    // Run MCTS with neural evaluator
+    auto evaluator = std::make_unique<NeuralEvaluator>(neuralTrainer.network);
+    MCTS mcts(std::move(evaluator), mctsExplorationConstant);
     mcts.SearchSimulations(board, currentPlayer, mctsSimulations);
 
     // Get policy from MCTS visit counts
@@ -131,7 +133,8 @@ int Trainer::PlayEvaluationGame(MinimaxAI& minimax, bool nnGoesFirst) {
 
     if (currentPlayer == nnPlayer) {
       // NN player using MCTS
-      MCTS mcts(neuralTrainer.network, mctsExplorationConstant);
+      auto evaluator = std::make_unique<NeuralEvaluator>(neuralTrainer.network);
+      MCTS mcts(std::move(evaluator), mctsExplorationConstant);
       mcts.SearchSimulations(board, currentPlayer, mctsSimulations / 2); // Use fewer sims for eval
       move = mcts.SelectBestMove();
     } else {

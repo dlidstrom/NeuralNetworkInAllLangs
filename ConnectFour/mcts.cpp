@@ -51,8 +51,8 @@ bool MCTSNode::IsFullyExpanded() const {
   return !children.empty() && children.size() == board.GetValidMoves().size();
 }
 
-MCTS::MCTS(Neural::Network network, double explorationConstant)
-    : network(std::move(network)), explorationConstant(explorationConstant) {}
+MCTS::MCTS(std::unique_ptr<Evaluator> evaluator, double explorationConstant)
+    : evaluator(std::move(evaluator)), explorationConstant(explorationConstant) {}
 
 void MCTS::SearchSimulations(const Board& rootBoard, Player rootPlayer, int numSimulations) {
   // Create root node
@@ -65,16 +65,24 @@ void MCTS::SearchSimulations(const Board& rootBoard, Player rootPlayer, int numS
     // Selection
     MCTSNode* node = Selection(root.get());
 
-    // Expansion (if not terminal)
+    // Expansion (if not terminal and visited)
     if (!node->board.IsGameOver() && node->visits > 0) {
       Expansion(node);
-      // Select a child to simulate
+      // Select best child according to priors for first simulation
       if (!node->children.empty()) {
-        node = node->children[0].get();
+        double bestPrior = -1.0;
+        MCTSNode* bestChild = node->children[0].get();
+        for (const auto& child : node->children) {
+          if (child->prior > bestPrior) {
+            bestPrior = child->prior;
+            bestChild = child.get();
+          }
+        }
+        node = bestChild;
       }
     }
 
-    // Simulation (actually just NN evaluation)
+    // Simulation (actually just NN evaluation or terminal check)
     double value = Simulation(node);
 
     // Backpropagation
@@ -104,7 +112,15 @@ void MCTS::SearchTime(const Board& rootBoard, Player rootPlayer, double timeLimi
     if (!node->board.IsGameOver() && node->visits > 0) {
       Expansion(node);
       if (!node->children.empty()) {
-        node = node->children[0].get();
+        double bestPrior = -1.0;
+        MCTSNode* bestChild = node->children[0].get();
+        for (const auto& child : node->children) {
+          if (child->prior > bestPrior) {
+            bestPrior = child->prior;
+            bestChild = child.get();
+          }
+        }
+        node = bestChild;
       }
     }
 
@@ -145,8 +161,12 @@ void MCTS::Expansion(MCTSNode* node) {
     return;
   }
 
-  // Get NN evaluation
-  auto [priors, value] = EvaluatePosition(node->board, node->player);
+  #ifdef DEBUG_EXPANSION
+  std::cout << "Expanding node for player " << (node->player == Player::PLAYER1 ? "X" : "O") << "\n";
+  #endif
+
+  // Get evaluation from evaluator
+  auto [priors, value] = evaluator->Evaluate(node->board, node->player);
   node->priorProbabilities = priors;
 
   // Create child nodes for all valid moves
@@ -194,19 +214,20 @@ double MCTS::Simulation(MCTSNode* node) {
     return 0.0; // Draw
   }
 
-  // Use neural network to evaluate position
-  auto [priors, value] = EvaluatePosition(node->board, node->player);
+  // For non-terminal positions, use the evaluator's value estimate
+  auto [priors, value] = evaluator->Evaluate(node->board, node->player);
 
-  // Value is from current player's perspective
-  // We need to convert it to root player's perspective
+  // Get root player for value perspective
   MCTSNode* current = node;
   int depth = 0;
   while (current->parent != nullptr) {
     current = current->parent;
     depth++;
   }
+  Player rootPlayer = current->player;
 
-  // If depth is even, same player as root; if odd, opponent
+  // Value is from node->player perspective, convert to root perspective
+  // Flip value for each level up the tree
   if (depth % 2 == 1) {
     value = -value;
   }
@@ -223,65 +244,6 @@ void MCTS::Backpropagation(MCTSNode* node, double value) {
     value = -value;
     node = node->parent;
   }
-}
-
-std::pair<std::vector<double>, double> MCTS::EvaluatePosition(const Board& board, Player player) {
-  // Get normalized input with mirroring
-  bool wasMirrored;
-  std::vector<double> input = board.GetNormalizedInput(player, wasMirrored);
-
-  // Get network prediction
-  std::vector<double> output = network.Predict(input);
-
-  // Output has COLS values for policy + 1 value for position evaluation
-  // Actually, the current network only outputs COLS values
-  // We'll use a simple heuristic for value: average of valid move probabilities
-  std::vector<int> validMoves = board.GetValidMoves();
-
-  std::vector<double> priors(COLS, 0.0);
-  double totalProb = 0.0;
-
-  for (int col : validMoves) {
-    int actualCol = wasMirrored ? Board::MirrorColumn(col) : col;
-    if (actualCol >= 0 && actualCol < static_cast<int>(output.size())) {
-      priors[col] = std::max(0.01, output[actualCol]);
-      totalProb += priors[col];
-    }
-  }
-
-  // Normalize priors
-  if (totalProb > 0.0) {
-    for (int col : validMoves) {
-      priors[col] /= totalProb;
-    }
-  } else {
-    // Uniform distribution if network outputs are bad
-    double uniform = 1.0 / validMoves.size();
-    for (int col : validMoves) {
-      priors[col] = uniform;
-    }
-  }
-
-  // Estimate value based on move quality distribution
-  // Better heuristic: if we have strong concentration on one move, position is clearer
-  double value = 0.0;
-  if (!validMoves.empty()) {
-    // Calculate entropy-based value estimate
-    double maxProb = 0.0;
-    double avgProb = 0.0;
-    for (int col : validMoves) {
-      maxProb = std::max(maxProb, priors[col]);
-      avgProb += priors[col];
-    }
-    avgProb /= validMoves.size();
-
-    // High concentration (maxProb >> avgProb) suggests clear best move = good position
-    // Low concentration suggests unclear position
-    double concentration = maxProb / (avgProb + 0.01);
-    value = std::tanh((concentration - 1.5) / 2.0);
-  }
-
-  return {priors, value};
 }
 
 std::vector<int> MCTS::GetVisitCounts() const {

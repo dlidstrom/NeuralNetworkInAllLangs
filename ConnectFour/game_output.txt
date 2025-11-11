@@ -1,0 +1,467 @@
+Playing one game: MCTS (X) vs Minimax depth 2 (O)
+
+Move 1 - Player X
+  MCTS visit counts: 0:514 1:1 2:215 3:4126 4:45 5:15 6:84 
+  Root value: -0.0592
+  Playing column 3
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | |X| | | |
+ +-------------+
+
+Move 2 - Player O
+  Minimax chose: 2
+  Playing column 2
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | |O|X| | | |
+ +-------------+
+
+Move 3 - Player X
+  MCTS visit counts: 0:447 1:17 2:879 3:1235 4:1881 5:42 6:499 
+  Root value: -0.052
+  Playing column 4
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | |O|X|X| | |
+ +-------------+
+
+Move 4 - Player O
+  Minimax chose: 5
+  Playing column 5
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | |O|X|X|O| |
+ +-------------+
+
+Move 5 - Player X
+  MCTS visit counts: 0:212 1:1 2:3604 3:413 4:8 5:374 6:388 
+  Root value: -0.0434
+  Playing column 2
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | |X| | | | |
+ | | |O|X|X|O| |
+ +-------------+
+
+Move 6 - Player O
+  Minimax chose: 3
+  Playing column 3
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | |X|O| | | |
+ | | |O|X|X|O| |
+ +-------------+
+
+Move 7 - Player X
+  MCTS visit counts: 0:171 1:15 2:253 3:4136 4:306 5:60 6:59 
+  Root value: -0.0316
+  Playing column 3
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | |X| | | |
+ | | |X|O| | | |
+ | | |O|X|X|O| |
+ +-------------+
+
+Move 8 - Player O
+  Minimax chose: 1
+  Playing column 1
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | | |X| | | |
+ | | |X|O| | | |
+ | |O|O|X|X|O| |
+ +-------------+
+
+Move 9 - Player X
+  MCTS visit counts: 0:194 1:36 2:4041 3:521 4:187 5:18 6:3 
+  Root value: -0.0242
+  Playing column 2
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | | | | | | |
+ | | |X|X| | | |
+ | | |X|O| | | |
+ | |O|O|X|X|O| |
+ +-------------+
+
+Move 10 - Player O
+  Minimax chose: 2
+  Playing column 2
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | |O| | | | |
+ | | |X|X| | | |
+ | | |X|O| | | |
+ | |O|O|X|X|O| |
+ +-------------+
+
+Move 11 - Player X
+  MCTS visit counts: 0:106 1:150 2:125 3:4482 4:45 5:68 6:24 
+  Root value: -0.1124
+  Playing column 3
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O| | | |
+ | |O|O|X|X|O| |
+ +-------------+
+
+Move 12 - Player O
+  Minimax chose: 0
+  Playing column 0
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | | | | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O| | | |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 13 - Player X
+  MCTS visit counts: 0:14 1:26 2:14 3:3575 4:216 5:11 6:1144 
+  Root value: -0.1104
+  Playing column 3
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | | | | | |
+ | | | |X| | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O| | | |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 14 - Player O
+  Minimax chose: 3
+  Playing column 3
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | |O| | | |
+ | | | |X| | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O| | | |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 15 - Player X
+  MCTS visit counts: 0:63 1:27 2:20 4:246 5:4206 6:438 
+  Root value: -0.1796
+  Playing column 5
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | |O| | | |
+ | | | |X| | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O| |X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 16 - Player O
+  Minimax chose: 2
+  Playing column 2
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | |O| | | |
+ | | |O|X| | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O| |X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 17 - Player X
+  MCTS visit counts: 0:10 1:59 2:15 4:4068 5:9 6:839 
+  Root value: -0.2268
+  Playing column 4
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | |O| | | |
+ | | |O|X| | | |
+ | | |O|X| | | |
+ | | |X|X| | | |
+ | | |X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 18 - Player O
+  Minimax chose: 4
+  Playing column 4
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | |O| | | |
+ | | |O|X| | | |
+ | | |O|X| | | |
+ | | |X|X|O| | |
+ | | |X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 19 - Player X
+  MCTS visit counts: 0:1 1:15 2:58 4:4684 5:5 6:237 
+  Root value: -0.5532
+  Playing column 4
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | | |O| | | |
+ | | |O|X| | | |
+ | | |O|X|X| | |
+ | | |X|X|O| | |
+ | | |X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 20 - Player O
+  Minimax chose: 2
+  Playing column 2
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O| | | |
+ | | |O|X| | | |
+ | | |O|X|X| | |
+ | | |X|X|O| | |
+ | | |X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 21 - Player X
+  MCTS visit counts: 0:6 1:23 4:4818 5:8 6:145 
+  Root value: -0.9324
+  Playing column 4
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O| | | |
+ | | |O|X|X| | |
+ | | |O|X|X| | |
+ | | |X|X|O| | |
+ | | |X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 22 - Player O
+  Minimax chose: 1
+  Playing column 1
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O| | | |
+ | | |O|X|X| | |
+ | | |O|X|X| | |
+ | | |X|X|O| | |
+ | |O|X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 23 - Player X
+  MCTS visit counts: 0:1 1:13 4:4890 5:8 6:88 
+  Root value: -0.8694
+  Playing column 4
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ | | |O|X|X| | |
+ | | |X|X|O| | |
+ | |O|X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 24 - Player O
+  Minimax chose: 1
+  Playing column 1
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ | | |O|X|X| | |
+ | |O|X|X|O| | |
+ | |O|X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 25 - Player X
+  MCTS visit counts: 0:1 1:4998 6:1 
+  Root value: -0.961
+  Playing column 1
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ | |X|O|X|X| | |
+ | |O|X|X|O| | |
+ | |O|X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 26 - Player O
+  Minimax chose: 0
+  Playing column 0
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ | |X|O|X|X| | |
+ | |O|X|X|O| | |
+ |O|O|X|O|X|X| |
+ |O|O|O|X|X|O| |
+ +-------------+
+
+Move 27 - Player X
+  MCTS visit counts: 0:51 1:6 5:39 6:4904 
+  Root value: -0.9186
+  Playing column 6
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ | |X|O|X|X| | |
+ | |O|X|X|O| | |
+ |O|O|X|O|X|X| |
+ |O|O|O|X|X|O|X|
+ +-------------+
+
+Move 28 - Player O
+  Minimax chose: 0
+  Playing column 0
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ | |X|O|X|X| | |
+ |O|O|X|X|O| | |
+ |O|O|X|O|X|X| |
+ |O|O|O|X|X|O|X|
+ +-------------+
+
+Move 29 - Player X
+  MCTS visit counts: 0:5000 
+  Root value: -0.9634
+  Playing column 0
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ |X|X|O|X|X| | |
+ |O|O|X|X|O| | |
+ |O|O|X|O|X|X| |
+ |O|O|O|X|X|O|X|
+ +-------------+
+
+Move 30 - Player O
+  Minimax chose: 6
+  Playing column 6
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ |X|X|O|X|X| | |
+ |O|O|X|X|O| | |
+ |O|O|X|O|X|X|O|
+ |O|O|O|X|X|O|X|
+ +-------------+
+
+Move 31 - Player X
+  MCTS visit counts: 0:133 1:59 5:4807 6:1 
+  Root value: -0.9788
+  Playing column 5
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ |X|X|O|X|X| | |
+ |O|O|X|X|O|X| |
+ |O|O|X|O|X|X|O|
+ |O|O|O|X|X|O|X|
+ +-------------+
+
+Move 32 - Player O
+  Minimax chose: 5
+  Playing column 5
+
+  0 1 2 3 4 5 6 
+ +-------------+
+ | | |O|O|X| | |
+ | | |O|X|X| | |
+ |X|X|O|X|X|O| |
+ |O|O|X|X|O|X| |
+ |O|O|X|O|X|X|O|
+ |O|O|O|X|X|O|X|
+ +-------------+
+
+Minimax WINS!

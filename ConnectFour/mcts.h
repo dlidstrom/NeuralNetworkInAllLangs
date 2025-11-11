@@ -7,7 +7,7 @@ Copyright 2025 Daniel Lidstrom
 #define CONNECTFOUR_MCTS_H
 
 #include "board.h"
-#include "../Cpp/neural.h"
+#include "evaluator.h"
 #include <memory>
 #include <vector>
 #include <map>
@@ -47,7 +47,8 @@ struct MCTSNode {
 
 class MCTS {
 public:
-  MCTS(Neural::Network network, double explorationConstant = 1.414);
+  // Constructor takes an evaluator (ownership transferred via unique_ptr)
+  MCTS(std::unique_ptr<Evaluator> evaluator, double explorationConstant = 1.414);
 
   // Search for a number of simulations
   void SearchSimulations(const Board& rootBoard, Player rootPlayer, int numSimulations);
@@ -71,7 +72,7 @@ public:
   double GetRootValue() const;
 
 private:
-  Neural::Network network;
+  std::unique_ptr<Evaluator> evaluator;
   double explorationConstant;
   std::unique_ptr<MCTSNode> root;
 
@@ -80,9 +81,6 @@ private:
   void Expansion(MCTSNode* node);
   double Simulation(MCTSNode* node);
   void Backpropagation(MCTSNode* node, double value);
-
-  // Get neural network evaluation
-  std::pair<std::vector<double>, double> EvaluatePosition(const Board& board, Player player);
 
   // Helper to get opponent
   static Player GetOpponent(Player player) {

@@ -5,7 +5,13 @@
       "Bash(./connectfour)",
       "Bash(timeout 60 ./connectfour:*)",
       "Bash(timeout 120 ./connectfour:*)",
-      "Bash(timeout 180 ./connectfour:*)"
+      "Bash(timeout 180 ./connectfour:*)",
+      "Bash(./connectfour test:*)",
+      "Bash(g++:*)",
+      "Bash(./test_debug:*)",
+      "Bash(timeout 60 ./test_rollout:*)",
+      "Bash(./test_rollout_quality)",
+      "Bash(./test_empty_eval)"
     ],
     "deny": [],
     "ask": []

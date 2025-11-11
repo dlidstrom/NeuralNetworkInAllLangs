@@ -7,7 +7,8 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O3 -I..
 LDFLAGS =
 
 # Source files
-SOURCES = main.cpp board.cpp minimax.cpp mcts.cpp trainer.cpp \
+SOURCES = main.cpp board.cpp minimax.cpp mcts.cpp trainer.cpp tests.cpp \
+          heuristic_evaluator.cpp neural_evaluator.cpp \
           ../Cpp/neural.cpp ../Cpp/neural_io.cpp
 
 # Object files
@@ -39,4 +40,8 @@ clean-weights:
 run: $(TARGET)
 	./$(TARGET)
 
-.PHONY: all clean clean-weights run
+# Run tests
+test: $(TARGET)
+	./$(TARGET) test
+
+.PHONY: all clean clean-weights run test
