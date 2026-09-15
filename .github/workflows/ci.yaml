@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo npm install -g bats
 
-    - name: Setup dotnet 7
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v6
       with:
         dotnet-version: '10.0.401'
@@ -44,7 +44,7 @@ jobs:
       run: |
         sudo npm install -g bats
 
-    - name: Setup dotnet 7
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v6
       with:
         dotnet-version: '10.0.401'
